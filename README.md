@@ -31,14 +31,24 @@ If you are using VSCode
 
 ## Tabbing
 
-Use **2 spaces** for tabbing.
+In all circumstances use **2 spaces** for tabbing.
 
  - Do not use 4 spaces for tabbing
  - Do not use *[tab]* for tabbing
 
 ## Quotes
 
-Prefer single quotes (**'**) over double quotes (").
+By default, prefer single quotes (**'**) over double quotes (").
 
  - Use template quotes (`) for templating use or for quotes with multiple lines.
  - Use double quotes for HTML and React attributes
+
+## Variable Naming
+
+Variable names should be camelCased. When choosing a name please make the following considerations.
+
+ - use nouns
+ - Variables representing booleans, can use `is` or `valid`
+ - Variables representing functions, follow function naming
+ - Variables representing class definitions, follow class naming
+
