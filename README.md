@@ -1,0 +1,2 @@
+# coding
+My Coding Standards
