@@ -41,4 +41,4 @@ Use **2 spaces** for tabbing.
 Prefer single quotes (**'**) over double quotes (").
 
  - Use template quotes (`) for templating use or for quotes with multiple lines.
- - Use double quotes for HTML attributes
+ - Use double quotes for HTML and React attributes
