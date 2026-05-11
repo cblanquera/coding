@@ -14,6 +14,7 @@ Codex when to use the skill and how to apply it.
 | `developer-documentation` | Write onboarding docs, quick starts, tutorials, and conceptual developer guides. |
 | `documentation-formatting` | Normalize markdown structure, headings, code fences, links, and general document layout. |
 | `react-ts-developer` | Write or review TypeScript ReactJS / TSX using the conventions used in these repos. |
+| `test-engineer` | Write or review Jest or Mocha + Chai tests using the conventions used in these repos. |
 | `typescript-developer` | Write or review TypeScript using the conventions used in these repos. |
 
 ## Install
@@ -35,6 +36,7 @@ Copy any skill folders you want to install into `~/.codex/skills`:
 ```bash
 cp -R <your-repo>/skills/typescript-developer ~/.codex/skills/
 cp -R <your-repo>/skills/react-ts-developer ~/.codex/skills/
+cp -R <your-repo>/skills/test-engineer ~/.codex/skills/
 cp -R <your-repo>/skills/api-documentation ~/.codex/skills/
 cp -R <your-repo>/skills/developer-documentation ~/.codex/skills/
 cp -R <your-repo>/skills/documentation-formatting ~/.codex/skills/
