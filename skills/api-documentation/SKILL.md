@@ -11,6 +11,20 @@ already know what they are looking for and need accurate, scannable details.
 Optimize for lookup, correctness, and integration guidance. Do not turn API
 reference pages into onboarding tutorials.
 
+## Task Intake
+
+Before writing or restructuring anything, identify:
+
+1. the documented surface: class, module, CLI, config, schema, or mixed API
+2. the intended reader: caller, integrator, maintainer, or migration reader
+3. the missing information: signatures, behavior, defaults, errors, or examples
+4. the expected deliverable: single page, multi-file reference set, or index +
+   detail pages
+
+If the task is mostly onboarding, move to `developer-documentation`. If the
+task is mostly cleanup and consistency, bring in `documentation-formatting`
+after the reference structure is decided.
+
 ## Scope
 
 Use this skill for:
@@ -79,6 +93,19 @@ Do not document protected or private members unless the user explicitly asks.
 - Link related classes, modules, guides, and examples.
 - Explain how components fit together.
 - Keep reference pages lookup-friendly and independently scannable.
+
+## Deliverables
+
+When the task touches more than one API surface, prefer a small reference set
+over one overloaded page.
+
+Typical outputs are:
+
+- one lookup-friendly page per major API surface
+- an index page when several reference files now exist
+- realistic examples for the public behaviors that readers are most likely to
+  copy first
+- cross-links to related guides, tasks, or adjacent APIs
 
 ## Priority
 

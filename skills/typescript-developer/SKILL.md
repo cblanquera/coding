@@ -8,6 +8,30 @@ description: Use this skill when writing or reviewing TypeScript in the cblanque
 Use this skill for TypeScript implementation, refactors, and reviews in the
 `cblanquera` coding repositories.
 
+## Repo Discovery Workflow
+
+Before applying repo standards, inspect the local codebase in this order:
+
+1. the touched file and nearby sibling files
+2. project lint, formatter, and TypeScript config
+3. existing import and export patterns in the same package
+4. package runtime constraints such as ESM, Node version, and build output
+
+If the repo already has a stronger local convention, preserve it. Use this
+skill to fill gaps and make decisions when the local pattern is unclear.
+
+## Task Intake
+
+Decide early whether the work is mainly:
+
+- implementation in an existing module
+- refactor for clarity or typing
+- module extraction or file split
+- review of an existing TypeScript change
+
+For module-boundary decisions and file-splitting guidance, read
+`references/module-design.md` when needed.
+
 ## Priority Order
 
 Apply rules in this order:
@@ -319,6 +343,13 @@ export default class Router {
 - Do not hardcode secrets or API keys.
 - Keep `.env` files out of version control.
 - Do not commit `console.log`, `console.error`, or similar debug output.
+
+## References
+
+Load additional reference material only when the task needs it:
+
+- `references/module-design.md` for file splitting, helper extraction, and
+  public boundary decisions
 
 ## Review Checklist
 

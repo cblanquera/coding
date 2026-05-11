@@ -12,6 +12,18 @@ Use it after the document's editorial plan is clear, or when the user
 explicitly asks for formatting cleanup, normalization, or conversion of messy
 docs into a stable structure.
 
+## Task Intake
+
+Before normalizing a document, identify:
+
+1. whether it is a guide, tutorial, explanation, reference, or mixed page
+2. whether the real problem is structure, editorial flow, or missing content
+3. whether the file needs light cleanup or full legacy-doc conversion
+4. whether another documentation skill should own the content order first
+
+Do not start by reformatting everything mechanically. Preserve the intended
+reader flow and only normalize once the document type is understood.
+
 ## Scope
 
 Use this skill for:
@@ -76,6 +88,16 @@ When converting or normalizing existing docs:
   explicitly wants it.
 - Do not apply the "at least two" rule mechanically when a single subsection is
   clearer.
+
+## Deliverables
+
+The output should leave the document with:
+
+- a stable heading hierarchy
+- normalized spacing, lists, and fenced code blocks
+- working links and anchors
+- only the navigational elements that improve scanning
+- no formatting changes that make the content harder to learn from
 
 ## Review gate
 

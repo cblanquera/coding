@@ -13,6 +13,31 @@ This skill is intentionally self-contained. It consolidates the relevant
 ReactJS guidance and the repo's TypeScript-oriented coding style so Codex does
 not need to bounce between multiple documents during implementation.
 
+## Repo Discovery Workflow
+
+Before applying React-specific preferences, inspect the repo in this order:
+
+1. the touched component and nearby sibling components
+2. the local React stack, router, and rendering model
+3. the test stack used for nearby component tests
+4. any existing form, state, and hook conventions in the same package
+
+If the codebase already has a stronger local pattern, preserve it. Use this
+skill when the local pattern is missing, inconsistent, or needs a tie-breaker.
+
+## Task Intake
+
+Decide whether the task is mainly:
+
+- component implementation
+- component refactor
+- hook extraction
+- form behavior work
+- review of an existing TSX change
+
+For deeper form patterns or rendering-boundary checks, read the matching file in
+`references/` only when the task needs it.
+
 ## Priority Order
 
 Apply rules in this order:
@@ -110,16 +135,6 @@ function LeftMenu() {
   return (
     <aside>...</aside>
   );
-}
-```
-
-Bad:
-
-```tsx
-const AsideMenu = () => <aside>...</aside>;
-
-function LeftMenu() {
-  return <aside>...</aside>;
 }
 ```
 
@@ -325,42 +340,6 @@ is:
 //--------------------------------------------------------------------//
 ```
 
-Example:
-
-```tsx
-//--------------------------------------------------------------------//
-// Imports
-
-import { useState } from 'react';
-
-//--------------------------------------------------------------------//
-// Types
-
-export type ComponentProps = {};
-
-//--------------------------------------------------------------------//
-// Constants
-
-export const DEFAULT_SIZE = 240;
-
-//--------------------------------------------------------------------//
-// Helpers
-
-export function componentHelper() {}
-
-//--------------------------------------------------------------------//
-// Hooks
-
-export function useComponent() {}
-
-//--------------------------------------------------------------------//
-// Components
-
-export function Component() {}
-
-export default Object.assign(Component, { useComponent });
-```
-
 ### File Structure
 
 - Put reusable shared components in a `components` folder.
@@ -476,6 +455,15 @@ When a module has multiple exports, emit them in this order:
 - Default to `.tsx` component patterns with explicit prop contracts instead of
   loose JavaScript-style component signatures.
 - Prefer native React and browser APIs before adding dependencies.
+
+## References
+
+Load additional reference material only when the task needs it:
+
+- `references/forms.md` for controlled versus uncontrolled field behavior and
+  sync edge cases
+- `references/modern-react.md` for local rendering-boundary and state-placement
+  checks
 
 ## Review Checklist
 

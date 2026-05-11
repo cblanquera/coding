@@ -8,6 +8,30 @@ description: Use this skill when writing, expanding, or reviewing tests in the c
 Use this skill for test implementation, test refactors, test reviews, and
 coverage work in the `cblanquera` coding repositories.
 
+## Repo Discovery Workflow
+
+Before enforcing test conventions, inspect the repo in this order:
+
+1. the touched test file and nearby suites
+2. test runner, assertion, and mocking libraries in config and dependencies
+3. helper builders, fixtures, and shared setup already used nearby
+4. whether the package expects unit, integration, DOM, or mixed testing
+
+If the repo already has a stronger local pattern, preserve it. Use this skill
+to resolve ambiguity and keep new tests aligned with the existing stack.
+
+## Task Intake
+
+Decide whether the task is mainly:
+
+- adding coverage for existing behavior
+- fixing a broken or flaky test
+- reviewing a test change
+- introducing a new suite around a public boundary
+
+If the correct test level is unclear, read `references/test-selection.md`
+before writing assertions.
+
 ## Priority Order
 
 Apply rules in this order:
@@ -157,6 +181,15 @@ Jest-specific pitfalls:
 - Prefer roles, labels, and accessible names over brittle selectors.
 - Test effects through visible behavior, not hook internals.
 - Avoid giant snapshots and implementation-coupled assertions.
+
+## References
+
+Load additional reference material only when the task needs it:
+
+- `references/test-selection.md` for choosing unit, integration, or DOM tests
+- `references/jest.md` for Jest-specific reminders and failure modes
+- `references/mocha-chai.md` for Mocha + Chai suite structure and stubbing
+  patterns
 
 ## Coding Standards Inside Tests
 

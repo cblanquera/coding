@@ -15,6 +15,21 @@ Its job is to produce documentation that increases adoption by making the first 
 
 Do not write docs as a knowledge dump. Do not optimize for completeness on the first page. Optimize for successful onboarding first.
 
+## Task Intake
+
+Before drafting or restructuring, identify:
+
+1. who the reader is
+2. whether they are evaluating, trying, learning, or returning
+3. the first visible success the page should create
+4. what content is reference material and should move out of the main flow
+5. whether the result should be one page, a short guide set, or a docs landing
+   page with linked follow-up pages
+
+If the request is really API lookup content, switch to `api-documentation`. If
+the editorial sequence is already sound and the task is mostly cleanup, apply
+`documentation-formatting` after the content plan is settled.
+
 ## Scope
 
 Use this skill for:
@@ -249,6 +264,16 @@ When rewriting existing documentation:
 4. Separate explanation from tutorial flow.
 5. Separate tasks from reference.
 6. Verify that each page serves one reader stage well.
+
+## Deliverables
+
+A good output usually includes:
+
+- one clear first page or entry point
+- one happy-path quick start with a verification step
+- explanation sections that follow success instead of blocking it
+- task-oriented follow-up sections or separate pages when needed
+- explicit links to reference material instead of embedding all details inline
 
 ## Anti-patterns
 
