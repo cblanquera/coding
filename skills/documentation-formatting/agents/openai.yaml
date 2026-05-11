@@ -1,0 +1,4 @@
+interface:
+  display_name: "Documentation Formatting"
+  short_description: "Normalize markdown docs and structure"
+  default_prompt: "Use $documentation-formatting to normalize markdown structure, code fences, links, and navigation without changing the intended reader flow."

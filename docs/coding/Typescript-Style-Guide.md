@@ -81,7 +81,7 @@ Trailing commas are not allowed in import lists or parameter lists. Bullet and n
 
 ## 2. Imports
 
-Organize imports by node modules like `node:path`, `node:fs`, packages (in `node_modules`) and local imports as well as type imports and actual imports. Consider the following.
+Organize imports by node modules like `node:path`, `node:fs`, packages (in `node_modules`) and local imports as well as type imports and actual imports. This is called "Order of Imports". Consider the following.
 
 ```js
 //node
@@ -94,7 +94,7 @@ import { Mailer, send } from 'simple-mailer';
 import mustache from 'mustache';
 //local
 import type { User, Auth } from '../types.js';
-import { getUser } from './helpers';
+import { getUser } from './helpers/index.js';
 import Session from './Session.js';
 ```
 
@@ -103,9 +103,41 @@ When importing native node modules, prefix the name with `node:`.
 ```js
 //✅ Good
 import fs from 'node:fs';
-
 //❌ Bad
 import fs from 'fs';
+```
+
+Separate type imports from variable imports event when they are imported from the same module.
+
+```js
+//✅ Good
+import type { IncomingMessage } from 'node:http';
+import http, { createServer } from 'node:http';
+
+//✅ Okay (Acceptable)
+import type { IncomingMessage } from 'node:http';
+import { createServer } from 'node:http';
+import http from 'node:http';
+
+//❌ Bad
+import http, { IncomingMessage, createServer } from 'node:http';
+
+//❌ Bad
+import http, { type IncomingMessage, createServer } from 'node:http';
+```
+
+For ESM compatibility, import local files with a `.js` extension.
+
+```js
+//✅ Good
+import type { User, Auth } from '../types.js';
+import { getUser } from './helpers/index.js';
+import Session from './Session.js';
+
+//❌ Bad
+import type { User, Auth } from '../types';
+import { getUser } from './helpers';
+import Session from './Session';
 ```
 
 ## 3. Exports
@@ -467,6 +499,29 @@ public async resolve(a: string, b?: string) {
 
 ```ts
 public async resolve(a: any, b?: any) { return {}; }
+```
+
+### 4.6. Any and Ignore
+
+Always prefer to use `unknown` over `any`. In 99% of all cases, you should not use `any`. Always prefer to specify the type over using `unknown`.
+
+```ts
+//✅ Good
+const user: User = {};
+
+//✅ Okay
+const user: unknown = {};
+
+//❌ Bad
+const user: any = {};
+```
+
+Only use `ts-ignore` for troubleshooting. Definitely do not commit code that uses `ts-ignore`.
+
+```ts
+//❌ Bad
+//@ts-ignore
+const user = {};
 ```
 
 ## 5. Control Flow, Naming, and Documentation
