@@ -11,8 +11,12 @@ Codex when to use the skill and how to apply it.
 | Skill | Purpose |
 | --- | --- |
 | `api-documentation` | Write or restructure API reference docs for classes, modules, methods, configuration, and typed examples. |
+| `documentation-manager` | Route documentation tasks across the repo's documentation skills and sequence them correctly. |
 | `developer-documentation` | Write onboarding docs, quick starts, tutorials, and conceptual developer guides. |
 | `documentation-formatting` | Normalize markdown structure, headings, code fences, links, and general document layout. |
+| `html-css-developer` | Write or review vanilla HTML and CSS for static sites, docs pages, and GitHub Pages style projects. |
+| `technical-docs-editor` | Edit technical documentation for junior developers without changing technical meaning. |
+| `technical-writer-brd` | Create Business Requirements Documents from minimal stakeholder input, especially for B2B SaaS and procurement workflows. |
 | `react-ts-developer` | Write or review TypeScript ReactJS / TSX using the conventions used in these repos. |
 | `test-engineer` | Write or review Jest or Mocha + Chai tests using the conventions used in these repos. |
 | `typescript-developer` | Write or review TypeScript using the conventions used in these repos. |
@@ -38,8 +42,12 @@ cp -R <your-repo>/skills/typescript-developer ~/.codex/skills/
 cp -R <your-repo>/skills/react-ts-developer ~/.codex/skills/
 cp -R <your-repo>/skills/test-engineer ~/.codex/skills/
 cp -R <your-repo>/skills/api-documentation ~/.codex/skills/
+cp -R <your-repo>/skills/documentation-manager ~/.codex/skills/
 cp -R <your-repo>/skills/developer-documentation ~/.codex/skills/
 cp -R <your-repo>/skills/documentation-formatting ~/.codex/skills/
+cp -R <your-repo>/skills/html-css-developer ~/.codex/skills/
+cp -R <your-repo>/skills/technical-docs-editor ~/.codex/skills/
+cp -R <your-repo>/skills/technical-writer-brd ~/.codex/skills/
 ```
 
 If Codex is already running, restart it so it reloads the installed skills.
@@ -59,11 +67,27 @@ Use $react-ts-developer to clean up this TSX component.
 ```
 
 ```text
+Use $documentation-manager to figure out how to rewrite this library documentation set without me tagging multiple roles.
+```
+
+```text
+Use $html-css-developer to clean up this HTML template and the CSS that styles it.
+```
+
+```text
 Use $developer-documentation to turn this draft into a proper quick start.
 ```
 
 ```text
 Use $api-documentation and $documentation-formatting to rewrite this API page.
+```
+
+```text
+Use $technical-docs-editor to simplify this library guide for junior developers without changing the API behavior.
+```
+
+```text
+Use $technical-writer-brd to create a procurement SaaS BRD from a business objective, problem statements, and target outcomes.
 ```
 
 Codex can also auto-select a skill when your request clearly matches the
