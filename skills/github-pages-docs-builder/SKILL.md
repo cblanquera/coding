@@ -256,8 +256,11 @@ When doing browser QA for the generated docs site:
   `~/.codex/skills/github-pages-docs-builder/scripts/localhost_preview.py` to
   run the build and preview commands with `HOST` and `PORT` bound for localhost
   testing
-- do not expect or require a repo-local `scripts/localhost_preview.py` copy in
-  the target project
+- treat that helper as part of the skill installation, not part of the target
+  project
+- do not search the target project for `scripts/localhost_preview.py`
+- do not report a missing repo-local `scripts/localhost_preview.py` as a repo
+  gap or propose adding one to the target project
 - ensure the target project's `serve.mjs` or equivalent preview entrypoint
   honors both `HOST` and `PORT` before relying on the wrapper for browser
   automation
