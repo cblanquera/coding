@@ -14,9 +14,9 @@ Codex when to use the skill and how to apply it.
 | `documentation-manager` | Route documentation tasks across the repo's documentation skills and sequence them correctly. |
 | `developer-documentation` | Write onboarding docs, quick starts, tutorials, and conceptual developer guides. |
 | `documentation-formatting` | Normalize markdown structure, headings, code fences, links, and general document layout. |
+| `github-pages-docs-builder` | Build Markdown-first technical documentation sites for GitHub Pages with source in `specs/`, generated output in `docs/`, and repo-local build scripts. |
 | `html-css-developer` | Write or review vanilla HTML and CSS for static sites, docs pages, and GitHub Pages style projects. |
 | `technical-docs-editor` | Edit technical documentation for junior developers without changing technical meaning. |
-| `technical-writer-brd` | Create Business Requirements Documents from minimal stakeholder input, especially for B2B SaaS and procurement workflows. |
 | `react-ts-developer` | Write or review TypeScript ReactJS / TSX using the conventions used in these repos. |
 | `test-engineer` | Write or review Jest or Mocha + Chai tests using the conventions used in these repos. |
 | `typescript-developer` | Write or review TypeScript using the conventions used in these repos. |
@@ -45,9 +45,9 @@ cp -R <your-repo>/skills/api-documentation ~/.codex/skills/
 cp -R <your-repo>/skills/documentation-manager ~/.codex/skills/
 cp -R <your-repo>/skills/developer-documentation ~/.codex/skills/
 cp -R <your-repo>/skills/documentation-formatting ~/.codex/skills/
+cp -R <your-repo>/skills/github-pages-docs-builder ~/.codex/skills/
 cp -R <your-repo>/skills/html-css-developer ~/.codex/skills/
 cp -R <your-repo>/skills/technical-docs-editor ~/.codex/skills/
-cp -R <your-repo>/skills/technical-writer-brd ~/.codex/skills/
 ```
 
 If Codex is already running, restart it so it reloads the installed skills.
@@ -75,6 +75,10 @@ Use $html-css-developer to clean up this HTML template and the CSS that styles i
 ```
 
 ```text
+Use $github-pages-docs-builder to turn these Markdown docs into a GitHub Pages site with source in specs/ and generated output in docs/.
+```
+
+```text
 Use $developer-documentation to turn this draft into a proper quick start.
 ```
 
@@ -84,10 +88,6 @@ Use $api-documentation and $documentation-formatting to rewrite this API page.
 
 ```text
 Use $technical-docs-editor to simplify this library guide for junior developers without changing the API behavior.
-```
-
-```text
-Use $technical-writer-brd to create a procurement SaaS BRD from a business objective, problem statements, and target outcomes.
 ```
 
 Codex can also auto-select a skill when your request clearly matches the
@@ -101,6 +101,7 @@ Each skill directory typically contains:
 - `SKILL.md`: the instructions Codex reads and follows
 - `agents/openai.yaml`: optional display metadata and default prompt text for
   the OpenAI/Codex agent interface
+- `scripts/`: optional helper scripts used by the skill
 
 Keep the folder name stable because that is the name you will reference in
 prompts.
@@ -110,5 +111,7 @@ prompts.
 - You can install one skill or all of them.
 - If you update a skill from GitHub, copy the updated folder back into
   `~/.codex/skills`.
+- Some skills include helper scripts under `scripts/`; install the whole skill
+  directory so those helpers are available.
 - These skills are opinionated for the `cblanquera` coding repositories, so
   some coding-style rules are intentionally specific.
