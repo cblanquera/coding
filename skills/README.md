@@ -15,6 +15,7 @@ Codex when to use the skill and how to apply it.
 | `developer-documentation` | Write onboarding docs, quick starts, tutorials, and conceptual developer guides. |
 | `documentation-formatting` | Normalize markdown structure, headings, code fences, links, and general document layout. |
 | `github-pages-docs-builder` | Build Markdown-first technical documentation sites for GitHub Pages with source in `specs/`, generated output in `docs/`, and repo-local build scripts. |
+| `github-pages-qa-recording` | Run Playwright-based QA and capture video recordings for generated GitHub Pages sites using the repo-local preview helper and `.playwright/` workspace. |
 | `github-pages-qa-screenshot` | Run browser QA and capture screenshots for generated GitHub Pages sites using a repo-local preview helper. |
 | `html-css-developer` | Write or review vanilla HTML and CSS for static sites, docs pages, and GitHub Pages style projects. |
 | `static-site-visual-design` | Define or refine the visual direction for static sites and documentation homepages before or during implementation. |
@@ -48,6 +49,7 @@ cp -R <your-repo>/skills/documentation-manager ~/.codex/skills/
 cp -R <your-repo>/skills/developer-documentation ~/.codex/skills/
 cp -R <your-repo>/skills/documentation-formatting ~/.codex/skills/
 cp -R <your-repo>/skills/github-pages-docs-builder ~/.codex/skills/
+cp -R <your-repo>/skills/github-pages-qa-recording ~/.codex/skills/
 cp -R <your-repo>/skills/github-pages-qa-screenshot ~/.codex/skills/
 cp -R <your-repo>/skills/html-css-developer ~/.codex/skills/
 cp -R <your-repo>/skills/static-site-visual-design ~/.codex/skills/
@@ -84,6 +86,10 @@ Use $github-pages-docs-builder to turn these Markdown docs into a GitHub Pages s
 
 ```text
 Use $static-site-visual-design to define the visual direction for this docs homepage before touching the CSS.
+```
+
+```text
+Use $github-pages-qa-recording to preview the generated GitHub Pages site locally and record a Playwright walkthrough of the homepage and one article page.
 ```
 
 ```text

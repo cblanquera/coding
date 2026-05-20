@@ -41,6 +41,11 @@ when the work is mainly about local preview startup, browser QA, responsive
 checks, screenshot capture, or visual regression triage for a generated GitHub
 Pages site.
 
+Use [`github-pages-qa-recording`](../github-pages-qa-recording/SKILL.md)
+when the work is mainly about local preview startup, Playwright-driven browser
+QA, responsive walkthroughs, or video recording capture for a generated GitHub
+Pages site.
+
 Use [`technical-docs-editor`](../technical-docs-editor/SKILL.md) only when the
 site needs editorial help for existing prose or when bridging small missing
 connector copy between pages. Do not use it to invent product claims, API
@@ -52,6 +57,7 @@ This skill coordinates the minimum necessary sequence across:
 
 - `html-css-developer`
 - `static-site-visual-design`
+- `github-pages-qa-recording`
 - `github-pages-qa-screenshot`
 - `technical-docs-editor`
 
@@ -63,6 +69,8 @@ Keep ownership boundaries explicit.
 - `html-css-developer` owns HTML and CSS implementation quality.
 - `static-site-visual-design` owns the visual direction and visual-system
   decisions.
+- `github-pages-qa-recording` owns preview startup, Playwright validation, and
+  recording workflow.
 - `github-pages-qa-screenshot` owns preview startup, browser validation, and
   screenshot workflow.
 - `technical-docs-editor` owns prose cleanup that stays faithful to source.
@@ -86,6 +94,14 @@ Use `github-pages-qa-screenshot` when the task is mainly about:
 - capturing screenshots of the generated output
 - validating light and dark themes visually
 - separating repo-side issues from environment-side preview blockers
+
+Use `github-pages-qa-recording` when the task is mainly about:
+
+- starting a localhost preview for scripted browser testing
+- recording Playwright walkthroughs of the generated site
+- capturing video artifacts for demos, repros, or QA evidence
+- validating responsive flows through deterministic browser automation
+- separating repo-side issues from environment-side Playwright blockers
 
 Use `html-css-developer` when the task is mainly about:
 
@@ -112,7 +128,11 @@ Default implementation path:
 3. `html-css-developer` implements the templates, fragments, and styles.
 4. `technical-docs-editor` improves source-supported copy if needed.
 5. `github-pages-qa-screenshot` validates the generated output and captures
-   screenshots when the environment allows.
+   screenshots when still-image QA artifacts are needed and the environment
+   allows.
+6. `github-pages-qa-recording` validates the generated output and captures
+   Playwright recordings when video artifacts or scripted walkthroughs are
+   needed and the environment allows.
 
 Do not run browser QA first when the repo layout or preview contract is still
 unclear.
@@ -135,7 +155,8 @@ Do not use this skill when:
 - the user wants a SPA or application frontend
 - the repo already has a framework-based docs stack the user wants preserved
 - the task is mainly editorial copy work with no site generation
-- the task is only browser QA or screenshots for an already-built site
+- the task is only browser QA, screenshots, or recordings for an already-built
+  site
 - the task is only visual direction work with no docs-site architecture
 
 ## First Questions
@@ -189,8 +210,9 @@ packages/www/templates/
 packages/www/styles/
 packages/www/scripts/
 packages/www/build.mjs
-packages/www/serve.mjs
-packages/www/check.mjs
+.playwright/
+.playwright/serve.mjs
+.playwright/check.mjs
 ```
 
 Use this layout for non-monorepos:
@@ -205,8 +227,9 @@ www/templates/
 www/styles/
 www/scripts/
 www/build.mjs
-www/serve.mjs
-www/check.mjs
+.playwright/
+.playwright/serve.mjs
+.playwright/check.mjs
 ```
 
 ## Defaults
@@ -294,12 +317,16 @@ Set up these responsibilities:
 - copy assets from the builder root `assets/` directory into `docs/assets`
 
 `serve.mjs`
+- lives in repo-root `.playwright/` because preview startup is QA-facing
+  infrastructure rather than builder logic
 - locally preview the generated `docs/` output
 - read both `HOST` and `PORT` from the environment when provided
 - pass `HOST` and `PORT` through to the underlying server bind call so browser
   QA can request a localhost-only preview when needed
 
 `check.mjs`
+- lives in repo-root `.playwright/` because site validation is QA-facing
+  infrastructure rather than build generation logic
 - validate required structure and files
 - validate build output exists for key pages
 - check internal links where feasible
@@ -398,8 +425,10 @@ origin root.
 The docs workflow must be verifiable without depending on browser automation.
 
 - implement a build script that fully regenerates `docs/`
-- implement a local serve script for previewing generated output
-- implement a check script that validates the generated site structure
+- implement a repo-root `.playwright/serve.mjs` script for previewing generated
+  output
+- implement a repo-root `.playwright/check.mjs` script that validates the
+  generated site structure
 - validate internal links where practical
 - validate copied assets and key generated pages exist
 - check for obvious generation mistakes such as unresolved placeholders,
@@ -423,10 +452,12 @@ The docs workflow must be verifiable without depending on browser automation.
 11. Implement templates, fragments, styles, and scripts.
 12. Generate the site into `docs/`.
 13. Run `www:check`.
-14. Route browser validation to `github-pages-qa-screenshot` when needed and
-    possible.
-15. Do a cleanup pass on HTML, CSS, templates, and generator code.
-16. Summarize the final editing and publishing workflow.
+14. Route browser validation to `github-pages-qa-screenshot` when still-image
+    QA artifacts are needed and possible.
+15. Route browser validation to `github-pages-qa-recording` when Playwright
+    video artifacts or scripted walkthroughs are needed and possible.
+16. Do a cleanup pass on HTML, CSS, templates, and generator code.
+17. Summarize the final editing and publishing workflow.
 
 ## Finish Pass Requirements
 
