@@ -15,7 +15,9 @@ Codex when to use the skill and how to apply it.
 | `developer-documentation` | Write onboarding docs, quick starts, tutorials, and conceptual developer guides. |
 | `documentation-formatting` | Normalize markdown structure, headings, code fences, links, and general document layout. |
 | `github-pages-docs-builder` | Build Markdown-first technical documentation sites for GitHub Pages with source in `specs/`, generated output in `docs/`, and repo-local build scripts. |
+| `github-pages-qa-screenshot` | Run browser QA and capture screenshots for generated GitHub Pages sites using a repo-local preview helper. |
 | `html-css-developer` | Write or review vanilla HTML and CSS for static sites, docs pages, and GitHub Pages style projects. |
+| `static-site-visual-design` | Define or refine the visual direction for static sites and documentation homepages before or during implementation. |
 | `technical-docs-editor` | Edit technical documentation for junior developers without changing technical meaning. |
 | `react-ts-developer` | Write or review TypeScript ReactJS / TSX using the conventions used in these repos. |
 | `test-engineer` | Write or review Jest or Mocha + Chai tests using the conventions used in these repos. |
@@ -46,7 +48,9 @@ cp -R <your-repo>/skills/documentation-manager ~/.codex/skills/
 cp -R <your-repo>/skills/developer-documentation ~/.codex/skills/
 cp -R <your-repo>/skills/documentation-formatting ~/.codex/skills/
 cp -R <your-repo>/skills/github-pages-docs-builder ~/.codex/skills/
+cp -R <your-repo>/skills/github-pages-qa-screenshot ~/.codex/skills/
 cp -R <your-repo>/skills/html-css-developer ~/.codex/skills/
+cp -R <your-repo>/skills/static-site-visual-design ~/.codex/skills/
 cp -R <your-repo>/skills/technical-docs-editor ~/.codex/skills/
 ```
 
@@ -76,6 +80,14 @@ Use $html-css-developer to clean up this HTML template and the CSS that styles i
 
 ```text
 Use $github-pages-docs-builder to turn these Markdown docs into a GitHub Pages site with source in specs/ and generated output in docs/.
+```
+
+```text
+Use $static-site-visual-design to define the visual direction for this docs homepage before touching the CSS.
+```
+
+```text
+Use $github-pages-qa-screenshot to preview the generated GitHub Pages site locally and capture screenshots of the homepage and one article page.
 ```
 
 ```text

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Static Site Visual Design"
+  short_description: "Design direction for static sites"
+  default_prompt: "Use $static-site-visual-design to define or refine the visual direction for this static site or docs homepage before implementation."
+policy:
+  allow_implicit_invocation: true

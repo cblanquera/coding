@@ -1,61 +1,121 @@
 ---
 name: github-pages-docs-builder
-description: Build and maintain static technical documentation websites for GitHub Pages from Markdown source. Use this skill when Codex needs to migrate docs source into specs/, generate publishable HTML into docs/, scaffold a repo-local www builder area, reuse existing logos and assets, choose or inspect a template engine, and implement a lightweight docs site with vanilla HTML, CSS, and JavaScript.
+description: Coordinate Markdown-first technical documentation sites for GitHub Pages from Markdown source. Use this skill when Codex needs to plan repo layout, migrate docs source into specs/, generate publishable HTML into docs/, choose the right docs-site specialist skill, and manage the overall build, design, and QA workflow.
 ---
 
 # GitHub Pages Docs Builder
 
-Use this skill to build or refactor a Markdown-first technical documentation site
-for GitHub Pages.
+Use this skill as the manager for GitHub Pages documentation-site work.
 
-This is primarily an orchestration skill. It owns repo discovery, migration
-rules, builder structure, GitHub Pages constraints, and the overall docs-site
-workflow. It should delegate specialized implementation work to narrower skills
-instead of trying to inline every concern itself.
+It owns:
+
+- repo discovery
+- source-of-truth layout decisions
+- migration policy
+- builder structure
+- GitHub Pages deployment constraints
+- specialist-skill routing
+
+It does not try to own every implementation detail itself. Route visual-system
+work and browser QA work to narrower skills.
 
 This skill is opinionated. It assumes:
 
 - authored docs live in `specs/`
 - published output lives in `docs/`
 - site source and build scripts live in `www/` or `packages/www`
-- implementation uses vanilla HTML, CSS, and JavaScript
+- implementation uses vanilla HTML, CSS, and JavaScript unless the repo
+  already establishes another static-site pattern
 - generated output is not edited by hand
 
 Use [`html-css-developer`](../html-css-developer/SKILL.md) for frontend
 implementation rules, including page structure, template markup, stylesheet
 organization, and static-site HTML and CSS quality.
 
+Use [`static-site-visual-design`](../static-site-visual-design/SKILL.md) when
+the work is mainly about design direction, visual hierarchy, brand adaptation,
+homepage composition, or visual-system decisions.
+
+Use [`github-pages-qa-screenshot`](../github-pages-qa-screenshot/SKILL.md)
+when the work is mainly about local preview startup, browser QA, responsive
+checks, screenshot capture, or visual regression triage for a generated GitHub
+Pages site.
+
 Use [`technical-docs-editor`](../technical-docs-editor/SKILL.md) only when the
 site needs editorial help for existing prose or when bridging small missing
 connector copy between pages. Do not use it to invent product claims, API
 behavior, or feature explanations that are not supported by the local source.
 
-## Delegation Model
+## Managed Skills
 
-This skill coordinates the overall docs-site build. Its role is to decide the
-site shape, source-of-truth locations, migration path, and validation flow.
+This skill coordinates the minimum necessary sequence across:
 
-Delegate to `html-css-developer` when the work is mainly about:
+- `html-css-developer`
+- `static-site-visual-design`
+- `github-pages-qa-screenshot`
+- `technical-docs-editor`
 
-- HTML template structure
-- CSS architecture or cleanup
-- semantic layout decisions
-- static-site frontend implementation details
+## Core Rule
 
-Delegate to `technical-docs-editor` when the work is mainly about:
+Keep ownership boundaries explicit.
+
+- This skill decides the architecture and workflow.
+- `html-css-developer` owns HTML and CSS implementation quality.
+- `static-site-visual-design` owns the visual direction and visual-system
+  decisions.
+- `github-pages-qa-screenshot` owns preview startup, browser validation, and
+  screenshot workflow.
+- `technical-docs-editor` owns prose cleanup that stays faithful to source.
+
+Do not collapse all four roles back into one long instruction set.
+
+## Routing Rules
+
+Use `static-site-visual-design` when the task is mainly about:
+
+- defining or refining the design concept
+- adapting brand assets into a docs-site system
+- homepage visual composition
+- color, type, spacing, atmosphere, or hierarchy decisions
+- deciding how a docs site should feel before or during implementation
+
+Use `github-pages-qa-screenshot` when the task is mainly about:
+
+- starting a localhost preview for browser testing
+- checking responsive or visual issues in the generated site
+- capturing screenshots of the generated output
+- validating light and dark themes visually
+- separating repo-side issues from environment-side preview blockers
+
+Use `html-css-developer` when the task is mainly about:
+
+- implementing templates or fragments
+- cleaning up HTML structure
+- reorganizing CSS ownership
+- improving static-site frontend maintainability
+
+Use `technical-docs-editor` when the task is mainly about:
 
 - clarifying existing technical prose
-- smoothing transitions between existing sections
-- tightening source-supported homepage or landing-page copy
-- improving readability without changing technical meaning
+- smoothing transitions between source-supported sections
+- tightening homepage or landing-page copy without changing meaning
 
-Do not delegate core ownership decisions away from this skill, including:
+## Sequencing Rules
 
-- whether the site should use `specs/`, `docs/`, and the builder root
-- whether the builder belongs in `packages/www` or root `www`
-- how existing docs and assets should be migrated
-- which template engine is being used and how it should be inspected
-- what validation and publishing workflow the repo should follow
+Apply specialist skills in the narrowest useful sequence.
+
+Default implementation path:
+
+1. This skill decides layout, migration, and build contract.
+2. `static-site-visual-design` sets or validates the visual direction when
+   design work is needed.
+3. `html-css-developer` implements the templates, fragments, and styles.
+4. `technical-docs-editor` improves source-supported copy if needed.
+5. `github-pages-qa-screenshot` validates the generated output and captures
+   screenshots when the environment allows.
+
+Do not run browser QA first when the repo layout or preview contract is still
+unclear.
 
 ## When To Use
 
@@ -68,13 +128,15 @@ Use this skill when the user wants to:
   VitePress
 - restyle or rebuild an existing static docs site while preserving repo-local
   content and assets
+- coordinate layout, design, implementation, and QA across multiple skills
 
 Do not use this skill when:
 
 - the user wants a SPA or application frontend
 - the repo already has a framework-based docs stack the user wants preserved
 - the task is mainly editorial copy work with no site generation
-- the user only wants markdown formatting cleanup
+- the task is only browser QA or screenshots for an already-built site
+- the task is only visual direction work with no docs-site architecture
 
 ## First Questions
 
@@ -173,7 +235,7 @@ Default docs-site features:
 - Open Graph meta tags
 - Twitter card meta tags
 
-Do not assume Mermaid, search, SSR, React, Vue, or multi-version docs unless
+Do not assume SSR, React, Vue, or multi-version docs unless
 requested.
 
 ## Migration Rules
@@ -201,7 +263,8 @@ docs site:
   directory as the source of truth
 - copy those assets into `docs/assets` during the build
 
-The build must be able to fully recreate `docs/` from `specs/` and the builder root.
+The build must be able to fully recreate `docs/` from `specs/` and the builder
+root.
 
 ## Template Engine Rules
 
@@ -247,32 +310,6 @@ Normalize the nearest relevant `package.json` to use:
 - `www:build`
 - `www:serve`
 - `www:check`
-
-## QA Workflow
-
-When doing browser QA for the generated docs site:
-
-- use the installed helper at
-  `~/.codex/skills/github-pages-docs-builder/scripts/localhost_preview.py` to
-  run the build and preview commands with `HOST` and `PORT` bound for localhost
-  testing
-- treat that helper as part of the skill installation, not part of the target
-  project
-- do not search the target project for `scripts/localhost_preview.py`
-- do not report a missing repo-local `scripts/localhost_preview.py` as a repo
-  gap or propose adding one to the target project
-- ensure the target project's `serve.mjs` or equivalent preview entrypoint
-  honors both `HOST` and `PORT` before relying on the wrapper for browser
-  automation
-- if the preview server currently ignores `HOST`, update the project-side serve
-  script to pass the requested host into the server bind call
-- use the wrapper when the preview server needs an explicit localhost bind for
-  Browser or other local browser automation
-- keep the actual build and serve commands repo-specific; the script is only a
-  wrapper for consistent preview startup
-- if local preview or browser automation is blocked by the environment or
-  sandbox, say so clearly and separate the repo-side gap from the
-  environment-side blocker
 
 ## Generator Maintainability Rules
 
@@ -339,8 +376,8 @@ The shared layout should include:
 - Open Graph title, description, type, URL, and image when available
 - Twitter card, title, description, and image when available
 
-If the user does not provide a site URL or preview image, use only the tags that
-can be filled accurately from local context.
+If the user does not provide a site URL or preview image, use only the tags
+that can be filled accurately from local context.
 
 ## GitHub Pages Path Safety
 
@@ -356,28 +393,6 @@ origin root.
 - when canonical URLs are emitted, build them from the real public site URL
   rather than guessing from local paths
 
-## Visual Design Rules
-
-The design concept drives the system. Do not start styling before the concept,
-assets, and constraints are clear.
-
-Use the provided logos, icons, and images to infer:
-
-- likely accent colors
-- compatible background treatments
-- layout density
-- whether the brand direction is playful, editorial, technical, or restrained
-
-Treat design references carefully:
-
-- preserve the repo's brand identity over the reference site's look
-- if a reference was provided only for build structure, do not inherit its
-  aesthetics
-- if a reference was provided for visual direction, still adapt it to the local
-  brand assets and documentation needs
-
-Avoid generic docs styling when the concept supports a stronger visual system.
-
 ## Terminal-First Verification Mode
 
 The docs workflow must be verifiable without depending on browser automation.
@@ -390,24 +405,8 @@ The docs workflow must be verifiable without depending on browser automation.
 - check for obvious generation mistakes such as unresolved placeholders,
   leftover source-only paths, or leaked `.md` links in output HTML where those
   links should have been rewritten
-- use browser automation when available for visual confirmation, but do not make
-  it a hard dependency of the workflow
-
-## Visual QA Checklist
-
-Before finishing visual work, check the generated site for:
-
-- homepage looks like a homepage rather than a raw documentation page
-- background treatments remain coherent across the full viewport width
-- spacing and alignment are consistent in shared layout areas and hero sections
-- text does not clip, overlap, or drift off-grid at common viewport widths
-- decorative elements have a clear purpose and do not confuse the hierarchy
-- navigation labels match destination meaning
-- code blocks remain readable in all supported themes
-- copy buttons are present and visually associated with their code blocks when
-  that feature is enabled
-- light and dark mode both remain legible and visually coherent when those
-  themes are supported
+- use browser automation when available for visual confirmation, but do not
+  make it a hard dependency of the workflow
 
 ## Workflow
 
@@ -420,11 +419,14 @@ Before finishing visual work, check the generated site for:
 7. Move or organize reusable assets into the builder root `assets/` directory.
 8. Scaffold the `www` structure.
 9. Normalize `package.json` commands to `www:*`.
-10. Implement templates, fragments, styles, and scripts.
-11. Generate the site into `docs/`.
-12. Run `www:check`.
-13. Do a cleanup pass on HTML, CSS, templates, and generator code.
-14. Summarize the final editing and publishing workflow.
+10. Route visual direction work to `static-site-visual-design` when needed.
+11. Implement templates, fragments, styles, and scripts.
+12. Generate the site into `docs/`.
+13. Run `www:check`.
+14. Route browser validation to `github-pages-qa-screenshot` when needed and
+    possible.
+15. Do a cleanup pass on HTML, CSS, templates, and generator code.
+16. Summarize the final editing and publishing workflow.
 
 ## Finish Pass Requirements
 
@@ -448,6 +450,8 @@ Do not finish until the answer to all of these is yes:
 - Do reusable assets live in the builder root `assets/` directory?
 - Can the build recreate `docs/` from source?
 - Do `www:build`, `www:serve`, and `www:check` exist?
+- Did the correct specialist skills own design and QA concerns when those
+  concerns mattered?
 - Do the homepage and at least one doc page render?
 - Do nav, table-of-contents, and pager links resolve where applicable?
 - Are code examples readable and copyable when that feature is enabled?
