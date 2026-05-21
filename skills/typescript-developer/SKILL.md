@@ -5,8 +5,7 @@ description: Use this skill when writing or reviewing TypeScript in the cblanque
 
 # TypeScript Developer
 
-Use this skill for TypeScript implementation, refactors, and reviews in the
-`cblanquera` coding repositories.
+Use this skill for TypeScript implementation, refactors, and reviews.
 
 ## Repo Discovery Workflow
 
@@ -30,7 +29,7 @@ Decide early whether the work is mainly:
 - review of an existing TypeScript change
 
 For module-boundary decisions and file-splitting guidance, read
-`references/module-design.md` when needed.
+`references/module-design.md` in this skill when needed.
 
 ## Priority Order
 
@@ -75,7 +74,7 @@ multiple steps or hidden assumptions.
 - Prefer several small flow comments over one large paragraph.
 - Let the comments read top-to-bottom like a guided walkthrough of the code.
 - Follow the project inline comment style: `//Comment`, not `// Comment`.
-- Use `/** ... */` only for JSDoc on exported or important public APIs.
+- Use `/** ... */` only for JSDoc on all functions, and methods.
 - Do not add `@param`, `@returns`, or similar tags unless the user explicitly
   asks for them.
 - Do not leave commented-out code in committed work.
@@ -250,7 +249,11 @@ export default getStatus;
   `Required` when they keep types aligned with parent definitions.
 - Prefer explicit types over `unknown` when you know the shape.
 - Prefer `unknown` over `any` when a boundary truly is unknown.
+- Treat `any` as discouraged and reach for `unknown` first.
 - Avoid `any` unless there is no practical alternative.
+- When `any` is truly necessary, add `//Comment` lines immediately before that
+  usage explaining why `unknown`, a narrower type, or a generic would not work
+  at that boundary yet.
 - Do not commit `ts-ignore` except during temporary troubleshooting, and remove
   it before finishing.
 
@@ -367,4 +370,5 @@ Before finishing a TypeScript change, verify:
 - export sections are ordered correctly when multiple categories are present
 - exported items end with semicolons
 - object types use commas and interfaces are reserved for class contracts
+- any remaining `any` usage has a preceding justification comment
 - `any`, `ts-ignore`, debug logging, and commented-out code are not left behind
