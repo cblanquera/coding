@@ -35,7 +35,7 @@ Use `chrisai-coding-html-css` for frontend implementation rules, including
 page structure, template markup, stylesheet organization, and static-site HTML
 and CSS quality.
 
-Use `static-site-visual-design` when the work is mainly about design
+Use `chrisai-design-creative` when the work is mainly about creative
 direction, visual hierarchy, brand adaptation, homepage composition, or
 visual-system decisions.
 
@@ -62,7 +62,7 @@ already understood.
 This skill coordinates the minimum necessary sequence across:
 
 - `chrisai-coding-html-css`
-- `static-site-visual-design`
+- `chrisai-design-creative`
 - `chrisai-docs-dev-onboarding`
 - `chrisai-docs-dev-api-reference`
 - `chrisai-docs-copy-editing`
@@ -74,7 +74,7 @@ This skill coordinates the minimum necessary sequence across:
 Keep ownership boundaries explicit.
 
 - This skill decides the architecture and workflow.
-- `static-site-visual-design` owns the visual direction and visual-system
+- `chrisai-design-creative` owns the visual direction and visual-system
   decisions.
 - `chrisai-docs-dev-onboarding` owns onboarding flow, homepage orientation,
   and junior-developer learning sequence.
@@ -92,7 +92,7 @@ Do not collapse all roles back into one long instruction set.
 
 ## Routing Rules
 
-Use `static-site-visual-design` when the task is mainly about:
+Use `chrisai-design-creative` when the task is mainly about:
 
 - defining or refining the design concept
 - adapting brand assets into a docs-site system
@@ -151,7 +151,7 @@ Apply specialist skills in the narrowest useful sequence.
 Default implementation path:
 
 1. This skill decides layout, migration, and build contract.
-2. `static-site-visual-design` sets or validates the visual direction when
+2. `chrisai-design-creative` sets or validates the visual direction when
    design work is needed.
 3. Use documentation specialists as needed:
    - `chrisai-docs-dev-onboarding` for guide, homepage, and start-here flow
@@ -479,7 +479,7 @@ The docs workflow must be verifiable without depending on browser automation.
 7. Move or organize reusable assets into the builder root `assets/` directory.
 8. Scaffold the `www` structure.
 9. Normalize `package.json` commands to `www:*`.
-10. Route visual direction work to `static-site-visual-design` when needed.
+10. Route visual direction work to `chrisai-design-creative` when needed.
 11. Route docs shaping to `chrisai-docs-dev-onboarding`,
     `chrisai-docs-dev-api-reference`, and `chrisai-docs-dev-formatting` as
     needed.

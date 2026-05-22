@@ -11,6 +11,8 @@ Use it to decide whether a task belongs to the ChrisAI documentation, coding,
 or QA skill family, then hand the work to the narrowest matching specialist
 skill.
 
+Do not use this skill to route separate design-category work.
+
 Do not duplicate specialist instructions here. Route, then defer.
 
 ## Routing Model
@@ -18,6 +20,8 @@ Do not duplicate specialist instructions here. Route, then defer.
 - `chrisai-usage` may auto-route to ChrisAI specialist skills.
 - Specialist skills may be invoked directly by a human user.
 - Specialist skills must not auto-route to sibling skills.
+- Separate non-router categories may exist outside the ChrisAI docs, coding,
+  and QA family.
 - Do not reference or rely on deprecated intermediate routers.
 - `chrisai-usage` is the only shared ChrisAI skill that may actively consult a
   machine-local `local-environment` overlay.
@@ -89,6 +93,16 @@ feature implementation.
 - Do not route explicit manual `@browser` inspection there unless the request
   is clearly about QA or capture through the ChrisAI flow.
 
+## Out Of Scope
+
+Do not route work here when the main deliverable belongs to a separate skill
+category rather than the ChrisAI docs, coding, or QA family.
+
+- Use `chrisai-design-creative` directly for creative direction, visual-system
+  definition, homepage composition, brand adaptation, or future wireframing
+  work.
+- Do not force design-direction work through `chrisai-usage`.
+
 ## Decision Rules
 
 - Prefer the narrowest specialist that fully owns the task.
@@ -101,6 +115,9 @@ feature implementation.
   deliverable. A new test suite belongs to `chrisai-coding-ts-tests`.
 - If the request is about rendered browser behavior, screenshots, or recorded
   flows, prefer `chrisai-qa-playwright` over coding specialists.
+- If the request is mainly about creative direction or visual-system work,
+  treat it as outside the `chrisai-usage` router and prefer
+  `chrisai-design-creative` directly.
 - If the request needs concrete local runtime or executable paths, consult
   `local-environment` first when it exists.
 - If the request is outside the ChrisAI scope, do not force ChrisAI routing.
