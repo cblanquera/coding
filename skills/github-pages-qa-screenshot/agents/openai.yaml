@@ -1,6 +1,0 @@
-interface:
-  display_name: "GitHub Pages QA Screenshot"
-  short_description: "QA and screenshots for generated docs sites"
-  default_prompt: "Use $github-pages-qa-screenshot to validate a generated GitHub Pages site locally, check responsive behavior, and capture screenshots."
-policy:
-  allow_implicit_invocation: true

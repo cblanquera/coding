@@ -1,4 +1,0 @@
-interface:
-  display_name: "Technical Docs Editor"
-  short_description: "Edit technical docs for junior developers"
-  default_prompt: "Use $technical-docs-editor to improve technical documentation for junior developers while preserving technical accuracy, identifiers, API meaning, and behavioral claims."

@@ -1,6 +1,0 @@
-interface:
-  display_name: "GitHub Pages QA Recording"
-  short_description: "QA and Playwright video capture for generated docs sites"
-  default_prompt: "Use $github-pages-qa-recording to validate a generated GitHub Pages site locally, run a Playwright recording flow, and capture video artifacts."
-policy:
-  allow_implicit_invocation: true

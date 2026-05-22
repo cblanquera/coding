@@ -1,4 +1,0 @@
-interface:
-  display_name: "TypeScript Developer"
-  short_description: "Write repo-aligned TypeScript"
-  default_prompt: "Use $typescript-developer to write or review TypeScript that follows this repo's formatting, comment flow, import ordering, export ordering, and class and typing conventions."

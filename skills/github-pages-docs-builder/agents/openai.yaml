@@ -1,6 +1,0 @@
-interface:
-  display_name: "GitHub Pages Docs Builder"
-  short_description: "Build static Markdown docs sites"
-  default_prompt: "Use $github-pages-docs-builder to turn Markdown docs into a static GitHub Pages site with source in specs/, generated output in docs/, and a repo-local www build area."
-policy:
-  allow_implicit_invocation: true

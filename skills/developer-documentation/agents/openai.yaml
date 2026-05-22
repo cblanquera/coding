@@ -1,4 +1,0 @@
-interface:
-  display_name: "Developer Documentation"
-  short_description: "Write onboarding-first developer docs"
-  default_prompt: "Use $developer-documentation to draft or restructure developer documentation with a clear quick start, progressive disclosure, and separate reference material."

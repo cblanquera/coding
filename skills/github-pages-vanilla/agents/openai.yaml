@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Pages Vanilla"
+  short_description: "Build vanilla docs sites for GitHub Pages"
+  default_prompt: "Use $github-pages-vanilla to turn Markdown-first documentation into a vanilla static site with authored docs in specs/, generated output in docs/, a repo-local www build area, and coordinated design, docs, frontend, and QA specialists."

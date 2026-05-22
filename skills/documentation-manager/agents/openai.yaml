@@ -1,4 +1,0 @@
-interface:
-  display_name: "Documentation Manager"
-  short_description: "Route docs tasks across specialist skills"
-  default_prompt: "Use $documentation-manager to classify a documentation task, choose the right documentation skill sequence, and produce one coherent result across developer-documentation, api-documentation, technical-docs-editor, and documentation-formatting."
