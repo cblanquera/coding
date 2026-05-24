@@ -34,6 +34,19 @@ Before starting preview:
    which package owns the preview flow
 4. do not silently choose workspace root just because it exists
 
+Before running preview or QA commands:
+
+- resolve a concrete Node runtime that is version 22 or higher
+- prefer the repo's declared toolchain when present, such as `package.json`
+  `engines`, Volta, `nvm`, `.node-version`, or an existing project wrapper
+- use `local-environment` as the machine-local override layer when it exists
+  and the task needs concrete executable paths
+- do not rely on an unspecified ambient Node version when the repo provides a
+  clearer runtime contract
+- if Node 22+ cannot be resolved, report that as a blocker because preview
+  startup and browser QA may be invalid or unavailable without the correct
+  runtime
+
 When choosing the preview script, use this precedence:
 
 1. `preview`
@@ -54,6 +67,8 @@ When choosing the package manager:
 - prefer the repo's declared `packageManager`
 - otherwise infer from the nearest lockfile
 - do not invent a different package manager than the repo already uses
+- when the repo already expects `yarn`, run preview and supporting commands
+  through that resolved `yarn` runtime instead of silently switching managers
 
 If a repo-specific preview flow clearly requires a pre-step before the server
 can run, treat that as an exception and state the extra command explicitly

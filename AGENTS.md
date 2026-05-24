@@ -49,6 +49,18 @@ Valid work in this repository includes:
 - syncing skills or related integration material between an AI app and this
   repository when requested
 
+## Skill Update Order
+
+Update skills in this repository first.
+
+Do not update Codex skills first.
+
+Treat this repository as the primary editing surface for skill content that
+belongs here.
+
+After updating a skill here, ask whether it should also be synced to Codex
+skills.
+
 ## Source Of Truth
 
 Use the root project documentation and the active project content as the

@@ -1,49 +1,279 @@
 ---
 name: chrisai-coding-ts
-description: Use when writing or reviewing TypeScript in the cblanquera coding repos outside React-specific or test-specific work, especially for implementation, refactors, typing improvements, and module-level design cleanup.
+description: Use this skill when writing or reviewing TypeScript in the cblanquera coding repos. It consolidates the repo's TypeScript and coding standards into one Codex-oriented workflow, including story-like block comments, strict import grouping with `//node`, `//modules`, and `//client`, ordered export sections, ESM-safe local imports, and the project's typing and class conventions.
 ---
 
 # ChrisAI Coding TS
 
 Use this skill for TypeScript implementation, refactors, and reviews.
 
+## Second Pass Use
+
+This skill may guide implementation directly, but it is especially recommended
+as the final pass after the code already works.
+
+Use the last pass to normalize comment density, JSDoc coverage, declaration
+comments, imports, exports, and repo-style formatting without changing working
+behavior unnecessarily.
+
 ## Repo Discovery Workflow
 
-Before applying repo standards, inspect:
+Before applying repo standards, inspect the local codebase in this order:
 
 1. the touched file and nearby sibling files
 2. project lint, formatter, and TypeScript config
 3. existing import and export patterns in the same package
 4. package runtime constraints such as ESM, Node version, and build output
 
-If the repo already has a stronger local convention, preserve it.
+If the repo already has a stronger local convention, preserve it. Use this
+skill to fill gaps and make decisions when the local pattern is unclear.
+
+## Task Intake
+
+Decide early whether the work is mainly:
+
+- implementation in an existing module
+- refactor for clarity or typing
+- module extraction or file split
+- review of an existing TypeScript change
+
+For module-boundary decisions and file-splitting guidance, read
+`references/module-design.md` in this skill when needed.
 
 ## Priority Order
 
+Apply rules in this order:
+
 1. Match the existing style of the touched file when it is clear.
 2. Apply the standards in this skill.
-3. Preserve local patterns unless the user explicitly asks to normalize them.
+3. If a local pattern conflicts with this skill, preserve the local pattern
+   unless the user asks to normalize the file.
 
-## Core Rules
+Consistency beats preference. Keep changes small, focused, and easy to review.
 
-- Use clear, descriptive names.
-- Keep comments factual and local to non-trivial logic blocks.
-- Follow the repo's import grouping conventions when they are already in use.
-- Keep arrays, objects, and exports readable before trying to compact them.
-- Prefer strict typing and small helpers over `any`.
+## Core Formatting
 
-## Module Guidance
+- Use 2 spaces for indentation. Never use tabs.
+- Prefer single quotes for strings.
+- Use template literals for interpolation or multiline strings.
+- Use double quotes only when the target syntax requires it, such as JSX or
+  HTML attributes.
+- End statements with semicolons.
+- Do not add semicolons after `if`, `for`, or `while` blocks.
+- Do end `do...while` statements with a semicolon.
+- Keep lines compact and readable.
+- Aim for `<= 80` characters when practical.
+- Avoid going past `100` characters unless the file already does so
+  consistently.
+- Put opening braces on the same line.
+- Keep exactly one blank line between logical blocks.
+- Do not leave multiple consecutive blank lines.
+- Do not use trailing commas in import lists or parameter lists.
 
-- Keep modules focused on one clear responsibility.
-- Favor interfaces and types that make call sites easier to understand.
-- Preserve ESM-safe local import behavior where the repo expects it.
-- Make refactors small, focused, and easy to review.
+## Commenting Style
 
-## Review Gate
+The user prefers comments that read like a story and explain the flow of the
+logic while browsing. Bias toward more comments, not fewer, when the code has
+multiple steps or hidden assumptions.
 
-Do not consider the output complete unless the answer to all of these is yes:
+- Treat comments as part of the author's signature, not optional decoration.
+- Minimum comment density is per logical block.
+- Increase comment density toward line-by-line when the logic branches, carries
+  state, or hides assumptions.
+- Add short `//` comments before each non-trivial logic block when practical.
+- Story-style comments are welcome when they still stay local to the code they
+  narrate.
+- Explain why the next block exists, what state it prepares, and how it moves
+  the flow forward.
+- For multi-line conditionals, loops, callbacks, and ternaries, comment the
+  condition and the consequence or branch separately when that improves
+  scanning.
+- For one-line conditionals, one-line ternaries, compact loops, and short
+  inline callbacks that fit the line-length rules, one combined comment is
+  acceptable.
+- Keep comments factual and local to the code they describe.
+- Prefer several small flow comments over one large paragraph.
+- Let the comments read top-to-bottom like a guided walkthrough of the code.
+- Follow the project inline comment style: `//Comment`, not `// Comment`.
+- Use a space after `//` on continuation lines of the same wrapped comment
+  block.
+- Use `/** ... */` JSDoc on every function and every class method, no matter
+  how small.
+- Keep JSDoc to a short description by default. Do not add `@param`,
+  `@returns`, or similar tags unless the user explicitly asks for them.
+- Add `//` comments above every class property and above exported types,
+  constants, properties, and other exported declarations to explain what they
+  are, where they are used, and how they are used.
+- Do not leave commented-out code in committed work.
 
-- Does the file match the surrounding repo conventions?
-- Are names and types easy to understand?
-- Are imports, exports, and module boundaries readable?
-- Did the change stay focused on the intended responsibility?
+For concrete patterns and when-to-apply examples, load:
+
+- `references/commenting-style.md`
+- `references/jsdoc-and-declaration-comments.md`
+
+## Naming
+
+- Use names that another developer can understand without reading comments.
+- Avoid single-letter names and unclear abbreviations.
+- Use camelCase for variables and functions.
+- Use verb or verb-noun phrasing for functions, such as `getUser`.
+- Use PascalCase for classes and components.
+- Use nouns for classes, such as `TaskQueue`.
+- Use booleans like `isReady`, `hasToken`, `canRetry`, or `shouldPersist`.
+- Use kebab-case for folders and most files.
+- If a file exports a default class or component, PascalCase is acceptable for
+  the file name.
+
+## Data Layout And Spacing
+
+- Keep short arrays and objects on one line when they remain readable.
+- Expand arrays and objects vertically when they become long.
+- Use spaces inside non-empty arrays and objects.
+- Do not use spaces inside empty arrays or objects.
+
+## Imports
+
+Always group imports in exactly this order and label each group with section
+comments:
+
+1. `//node`
+2. `//modules`
+3. `//client`
+
+Within each section, order imports like this:
+
+1. named imports that are types
+2. default imports that are types
+3. named runtime imports
+4. default runtime imports
+
+Rules:
+
+- Prefix native Node modules with `node:`.
+- Use `.js` for client imports in ESM code.
+- Use `//client`, not `//local`.
+- Keep the section comments exactly as `//node`, `//modules`, and `//client`.
+- Separate type imports from runtime imports even when they come from the same
+  module.
+- Separate default and named imports when needed to preserve the required
+  ordering.
+- If one source module needs multiple import forms, keep them on separate lines
+  instead of combining them.
+- When there is no stronger local convention, sort imports within the same
+  subtype by module specifier.
+
+## Exports
+
+When a module has multiple exports, emit them in this order:
+
+1. Types
+2. Constants
+3. Functions
+4. Classes
+5. Default export
+
+Rules:
+
+- End export statements with semicolons, including exported functions and
+  classes.
+- Use section dividers only for blocks that actually exist.
+- Skip empty sections.
+- If there are only one or two exports in a category and no grouping benefit,
+  plain exports without section dividers are fine.
+- When there are enough exports that grouping improves scanning, use this exact
+  divider format:
+
+```ts
+//--------------------------------------------------------------------//
+```
+
+## Types And Interfaces
+
+- Prefer `type` for object shapes, function signatures, unions, and aliases.
+- Use `interface` for class contracts and shapes that a class will implement.
+- Do not add a semicolon after an `interface` block.
+- In object types, separate properties with commas, not semicolons.
+- Put one space after a type colon and no space before it.
+- Put spaces around `|` and `&` in unions and intersections.
+- Prefer built-in utility types like `Record`, `Pick`, `Omit`, `Partial`, and
+  `Required` when they keep types aligned with parent definitions.
+- Prefer explicit types over `unknown` when you know the shape.
+- Prefer `unknown` over `any` when a boundary truly is unknown.
+- Treat `any` as discouraged and reach for `unknown` first.
+- Avoid `any` unless there is no practical alternative.
+- When `any` is truly necessary, add `//Comment` lines immediately before that
+  usage explaining why `unknown`, a narrower type, or a generic would not work
+  at that boundary yet.
+- Do not commit `ts-ignore` except during temporary troubleshooting, and remove
+  it before finishing.
+
+## Functions And Methods
+
+- Do not add argument types when TypeScript can naturally infer them from a
+  default value or surrounding context.
+- Do not add return types when the implementation is clear and inference is
+  sufficient.
+- Add explicit types when they improve API clarity or prevent ambiguity.
+- Use narrowing with `typeof`, `Array.isArray`, or custom predicates before
+  acting on unknown input.
+- Throw real `Error` objects or subclasses with meaningful messages.
+- Do not swallow errors silently.
+
+## Classes
+
+- Use explicit access modifiers like `public`, `protected`, and `private`.
+- Prefix `protected` and `private` methods with `_`.
+- Keep internal helpers `protected` when subclasses may need them.
+- Mark composition fields `readonly` when they should not be reassigned.
+- Prefer getters to expose internal state instead of public mutable fields.
+- For public overloads, declare overload signatures first and follow them with
+  one implementation.
+- Return `this` from chainable APIs when that pattern matches the file.
+
+## Runtime And Repo Hygiene
+
+- Use strict ESM-safe local imports with `.js` suffixes.
+- Prefer native APIs before adding dependencies.
+- Only add packages that are clearly needed.
+- Remove unused packages when touched safely.
+- Do not hardcode secrets or API keys.
+- Keep `.env` files out of version control.
+- Do not commit `console.log`, `console.error`, or similar debug output.
+
+## References
+
+Load additional reference material only when the task needs it:
+
+- `references/commenting-style.md` for inline comment density, inline versus
+  multi-line control-flow comments, loops, callbacks, and ternaries
+- `references/jsdoc-and-declaration-comments.md` for JSDoc coverage and
+  declaration comment expectations
+- `references/formatting-basics.md` for shared char-length, spacing, and
+  semicolon rules pulled from the repo style guides
+- `references/typescript-style-details.md` for TypeScript-specific export,
+  typing, import, export, and declaration examples
+- `references/module-design.md` for file splitting, helper extraction, and
+  public boundary decisions
+
+## Review Checklist
+
+Before finishing a TypeScript change, verify:
+
+- the file still matches its existing local style where that style is clear
+- indentation, quotes, blank lines, and semicolons are consistent
+- the file received a final style pass after the logic was working
+- lines stay compact and readable without unnecessary wrapping
+- non-trivial logic blocks have enough `//Comment` guidance to browse as a
+  story
+- every function and class method has JSDoc
+- class properties and exported declarations have `//Comment` guidance where it
+  clarifies role or usage
+- JSDoc stays short and omits `@param` tags by default
+- imports are grouped under `//node`, `//modules`, `//client`
+- import lines are split to preserve the required type and runtime ordering
+- local imports use `.js`
+- export sections are ordered correctly when multiple categories are present
+- exported items end with semicolons
+- object types use commas and interfaces are reserved for class contracts
+- any remaining `any` usage has a preceding justification comment
+- `any`, `ts-ignore`, debug logging, and commented-out code are not left behind

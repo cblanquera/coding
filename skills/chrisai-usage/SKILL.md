@@ -82,6 +82,19 @@ Choose exactly one coding specialist unless the task crosses a real boundary.
 - Use `chrisai-coding-html-css` for plain HTML and CSS in static sites, docs
   pages, and frontend templates.
 
+## Coding Pass Sequencing
+
+When the task is code creation or substantive code edits, route coding work in
+two passes:
+
+1. use the narrowest coding specialist to get the behavior working
+2. run the same specialist again as a final style pass before considering the
+   work complete
+
+The second pass should normalize comments, JSDoc coverage, section comments,
+formatting, and repo-style structure without derailing already-correct logic.
+Do not skip the final pass just because the code already works.
+
 ## QA Routes
 
 Choose `chrisai-qa-playwright` when the deliverable is browser QA rather than
@@ -113,6 +126,8 @@ category rather than the ChrisAI docs, coding, or QA family.
   rather than document ownership, prefer `chrisai-docs-copy-editing`.
 - If the request mixes React code and tests, pick the side that owns the asked
   deliverable. A new test suite belongs to `chrisai-coding-ts-tests`.
+- If the request is code creation or a substantial code edit, apply the chosen
+  coding specialist again at the end as a style pass.
 - If the request is about rendered browser behavior, screenshots, or recorded
   flows, prefer `chrisai-qa-playwright` over coding specialists.
 - If the request is mainly about creative direction or visual-system work,

@@ -38,6 +38,21 @@ Use this skill for:
 Do not use this skill as the primary rule set for quick starts, tutorials, or
 general markdown normalization.
 
+For those cases, use:
+
+- `chrisai-docs-dev-onboarding`
+- `chrisai-docs-dev-formatting`
+
+## File Organization
+
+When a project has multiple API reference files:
+
+- place them in an `api/` directory when that matches the repo's docs layout
+- use an `api/README.md` or equivalent index page when several reference files
+  exist
+- prefer one file per major class, module, or component
+- use descriptive filenames that match the documented subject
+
 ## Default Page Structure
 
 Unless the codebase has a stronger local pattern, organize API pages in this
@@ -72,6 +87,35 @@ Do not document protected or private members unless the user explicitly asks.
 - Prefer realistic names and values.
 - Show TypeScript types when they clarify public usage.
 - Progress from basic examples to integration examples when several are needed.
+
+## Cross-Reference Rules
+
+- Link related classes, modules, guides, and examples.
+- Explain how components fit together.
+- Keep reference pages lookup-friendly and independently scannable.
+
+## Deliverables
+
+When the task touches more than one API surface, prefer a small reference set
+over one overloaded page.
+
+Typical outputs are:
+
+- one lookup-friendly page per major API surface
+- an index page when several reference files now exist
+- realistic examples for the public behaviors that readers are most likely to
+  copy first
+- cross-links to related guides, tasks, or adjacent APIs
+
+## Priority
+
+When this skill is used with other documentation skills:
+
+1. `chrisai-docs-dev-api-reference` owns the schema of the reference material.
+2. `chrisai-docs-dev-formatting` may normalize presentation without changing
+   the API schema.
+3. `chrisai-docs-dev-onboarding` may provide surrounding onboarding pages, but
+   should not force tutorial structure onto pure reference pages.
 
 ## Review Gate
 
