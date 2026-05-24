@@ -16,6 +16,9 @@ remaining job is to make the author's voice visible in the file.
 - When a control-flow step fits cleanly on one line, one combined comment is
   acceptable.
 - The first line of a `//` comment block has no space after `//`.
+- For single-sentence inline comments, start with lowercase after `//` and do
+  not end with a period.
+- For multi-sentence inline comments, sentence casing and punctuation are fine.
 - Continuation lines in the same wrapped comment block do have a space after
   `//`.
 - Do not leave commented-out code behind.

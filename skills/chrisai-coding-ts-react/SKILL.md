@@ -97,11 +97,17 @@ derived state, branching UI, or side effects.
 - Let the comments read top-to-bottom like a guided walkthrough of the file.
 - Prefer several small flow comments over one large paragraph.
 - Keep comments factual and local to the code they describe.
-- Follow the project inline comment style: `//Comment`, not `// Comment`.
+- For single-sentence inline comments, start with lowercase after `//` and do
+  not end with a period.
+- For multi-sentence inline comments, sentence casing and punctuation are fine.
 - Use a space after `//` on continuation lines of the same wrapped comment
   block.
-- Use `/** ... */` JSDoc on every function, hook, and class method, no matter
-  how small.
+- Use `/** ... */` JSDoc on every function, hook, class method, and exported
+  class, no matter how small.
+- Use JSDoc as the declaration-level comment style for functions, hooks,
+  methods, and classes.
+- Do not stack a `//comment` declaration note immediately above the JSDoc block
+  for the same function, hook, method, or class.
 - Keep JSDoc to a short description by default. Do not add `@param`,
   `@returns`, or similar tags unless the user explicitly asks for them.
 - Add `//` comments above every class property and above exported types,
@@ -367,6 +373,9 @@ When writing or reviewing React code, check for these issues:
   usage
 - debug logging and commented-out code are not left behind
 - every function, hook, and class method has JSDoc
+- exported classes also have JSDoc that explains their role and how callers use
+  or instantiate them
+- declaration-level `//comment` notes are not duplicated above JSDoc blocks
 - large JSX sections only use `START` / `END` section comments when that
   actually improves scanning
 - Comments explain the flow of the code without becoming noise.

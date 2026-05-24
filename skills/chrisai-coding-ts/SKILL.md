@@ -94,11 +94,17 @@ multiple steps or hidden assumptions.
 - Keep comments factual and local to the code they describe.
 - Prefer several small flow comments over one large paragraph.
 - Let the comments read top-to-bottom like a guided walkthrough of the code.
-- Follow the project inline comment style: `//Comment`, not `// Comment`.
+- For single-sentence inline comments, start with lowercase after `//` and do
+  not end with a period.
+- For multi-sentence inline comments, sentence casing and punctuation are fine.
 - Use a space after `//` on continuation lines of the same wrapped comment
   block.
-- Use `/** ... */` JSDoc on every function and every class method, no matter
-  how small.
+- Use `/** ... */` JSDoc on every function, every class method, and every
+  exported class, no matter how small.
+- Use JSDoc as the declaration-level comment style for functions, methods, and
+  classes.
+- Do not stack a `//comment` declaration note immediately above the JSDoc block
+  for the same function, method, or class.
 - Keep JSDoc to a short description by default. Do not add `@param`,
   `@returns`, or similar tags unless the user explicitly asks for them.
 - Add `//` comments above every class property and above exported types,
@@ -266,6 +272,9 @@ Before finishing a TypeScript change, verify:
 - non-trivial logic blocks have enough `//Comment` guidance to browse as a
   story
 - every function and class method has JSDoc
+- exported classes also have JSDoc that explains their role and how callers use
+  or instantiate them
+- declaration-level `//comment` notes are not duplicated above JSDoc blocks
 - class properties and exported declarations have `//Comment` guidance where it
   clarifies role or usage
 - JSDoc stays short and omits `@param` tags by default
