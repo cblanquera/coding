@@ -73,6 +73,8 @@ Do not default to multi-skill documentation sequences.
 
 Choose exactly one coding specialist unless the task crosses a real boundary.
 
+- Use `chrisai-coding-js` for JavaScript implementation or refactors outside
+  React and outside test-specific work, including `.js`, `.mjs`, and `.cjs`.
 - Use `chrisai-coding-ts` for TypeScript implementation or refactors outside
   React and outside test-specific work.
 - Use `chrisai-coding-ts-react` for TSX components, React hooks, and React UI
@@ -124,6 +126,9 @@ category rather than the ChrisAI docs, coding, or QA family.
   first; only add formatting later if needed.
 - If the request is mainly about proofreading, clarity, transitions, or tone
   rather than document ownership, prefer `chrisai-docs-copy-editing`.
+- If the request is non-React JavaScript, prefer `chrisai-coding-js` and let
+  that skill decide the right `.js`, `.mjs`, or `.cjs` handling after local
+  runtime discovery.
 - If the request mixes React code and tests, pick the side that owns the asked
   deliverable. A new test suite belongs to `chrisai-coding-ts-tests`.
 - If the request is code creation or a substantial code edit, apply the chosen

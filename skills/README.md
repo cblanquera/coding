@@ -13,6 +13,7 @@ repositories.
 | `chrisai-docs-copy-editing` | Proofread and tighten existing developer-facing documentation without changing technical meaning. |
 | `chrisai-docs-dev-formatting` | Normalize markdown structure and formatting using the repo's documentation style rules. |
 | `chrisai-coding-html-css` | Write or review vanilla HTML and CSS for static sites and docs pages. |
+| `chrisai-coding-js` | Write or review JavaScript using the repo's coding conventions across `.js`, `.mjs`, and `.cjs`. |
 | `chrisai-coding-ts-react` | Write or review React TSX using the repo's conventions. |
 | `chrisai-coding-ts-tests` | Write or review TypeScript tests using the repo's testing conventions. |
 | `chrisai-coding-ts` | Write or review TypeScript using the repo's coding conventions. |
