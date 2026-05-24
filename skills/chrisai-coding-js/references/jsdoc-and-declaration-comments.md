@@ -99,6 +99,8 @@ export default class Router {
   handler;
 }
 
+//Alphabetize exports within the same category after applying the category
+// order used by the repo.
 //The shared status map exported so route handlers and error formatters can
 // compare the same owned status values without repeating magic numbers.
 export const ROUTE_STATUS = {

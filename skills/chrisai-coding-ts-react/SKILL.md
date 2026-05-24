@@ -319,10 +319,38 @@ When a module has multiple exports, emit them in this order:
 
 - End export statements with semicolons, including exported functions and
   classes.
+- Keep the category order above, then alphabetize exports within each category
+  by exported name.
 - Use section dividers only for blocks that actually exist.
 - Skip empty sections.
 - If there are only one or two exports in a category and no grouping benefit,
   plain exports are fine.
+
+## Classes
+
+When TSX files include classes, follow the same TypeScript class rules used in
+the repo:
+
+- Use explicit access modifiers like `public`, `protected`, and `private`.
+- Always write `public` on public properties, getters, setters, methods, and
+  the constructor.
+- Order class members like this:
+  1. static properties
+  2. static methods
+  3. properties
+  4. getters
+  5. setters
+  6. constructor
+  7. methods
+- Within each member group, order by access level as `public`, then
+  `protected`, then `private`.
+- Within each same-kind and same-access group, alphabetize by the declared
+  property or method name.
+- Prefix `protected` and `private` methods with `_`.
+- Prefer `public readonly` for stable public composition fields.
+- Do not use `protected readonly` or `private readonly` unless immutability at
+  that boundary solves a real special-case need.
+- Prefer getters to expose internal state instead of public mutable fields.
 
 ## React Implementation Biases
 
@@ -369,6 +397,12 @@ When writing or reviewing React code, check for these issues:
 - Controlled and uncontrolled field behavior is implemented correctly.
 - Reusable pieces are separated from local-only pieces appropriately.
 - Imports and exports follow repo conventions.
+- export groups stay in the required category order and are alphabetized within
+  each category
+- TSX classes, when present, use explicit `public` members and follow the
+  required member-type, access-level, and alphabetized order
+- `protected readonly` and `private readonly` only appear for justified
+  special cases
 - exported declarations have `//Comment` guidance where it clarifies role or
   usage
 - debug logging and commented-out code are not left behind

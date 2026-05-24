@@ -97,12 +97,18 @@ export default class Router {
   //The request handler is reused by resolve() so route execution always flows
   // through the same boundary and plugins can decorate one shared handler.
   public readonly handler: RouteHandler;
+
+  public constructor(handler: RouteHandler) {
+    this.handler = handler;
+  }
 }
 
 //The public route table shared by registration code, resolve(), and plugin
 // hooks that inspect which route patterns were loaded.
 export type RouteMap = Record<string, RouteDefinition>;
 
+//Alphabetize exports within the same category after applying the category
+// order used by the repo.
 //The shared status map exported so route handlers and error formatters can
 // compare the same owned status values without repeating magic numbers.
 export const ROUTE_STATUS = {

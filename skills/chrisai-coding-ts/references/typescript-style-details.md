@@ -10,6 +10,8 @@
   3. Functions
   4. Classes
   5. Default export
+- Keep that category order, then alphabetize exports within each category by
+  exported name.
 
 ```ts
 //--------------------------------------------------------------------//
@@ -115,8 +117,17 @@ import RouteResolver from './RouteResolver.js';
 - Add explicit types when they improve public API clarity.
 - Prefer narrowing before acting on unknown input.
 - Use explicit access modifiers on class members.
+- Always write `public` on public properties, getters, setters, methods, and
+  the constructor.
+- Order class members as static properties, static methods, properties,
+  getters, setters, constructor, then methods.
+- Within each member group, order by access level as `public`, then
+  `protected`, then `private`.
+- Within each same-kind and same-access group, alphabetize by member name.
 - Prefix `protected` and `private` methods with `_`.
-- Prefer `readonly` for composition fields that should not be reassigned.
+- Prefer `public readonly` for stable public composition fields.
+- Avoid `protected readonly` and `private readonly` unless a special case
+  makes that boundary-level immutability materially clearer.
 - Declare overload signatures before the shared implementation.
 
 ```ts
@@ -137,6 +148,10 @@ export default class RouteResolver {
 
   public get routes() {
     return this.handler.routes;
+  }
+
+  public constructor(handler: RouteHandler) {
+    this.handler = handler;
   }
 
   protected _resolveEvent(event: string) {}

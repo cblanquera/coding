@@ -182,6 +182,8 @@ Rules:
 
 - End export statements with semicolons, including exported functions and
   classes.
+- Keep the category order above, then alphabetize exports within each category
+  by exported name.
 - Use section dividers only for blocks that actually exist.
 - Skip empty sections.
 - If there are only one or two exports in a category and no grouping benefit,
@@ -228,9 +230,25 @@ Rules:
 ## Classes
 
 - Use explicit access modifiers like `public`, `protected`, and `private`.
+- Always write `public` on public properties, getters, setters, methods, and
+  the constructor.
+- Order class members like this:
+  1. static properties
+  2. static methods
+  3. properties
+  4. getters
+  5. setters
+  6. constructor
+  7. methods
+- Within each member group, order by access level as `public`, then
+  `protected`, then `private`.
+- Within each same-kind and same-access group, alphabetize by the declared
+  property or method name.
 - Prefix `protected` and `private` methods with `_`.
 - Keep internal helpers `protected` when subclasses may need them.
-- Mark composition fields `readonly` when they should not be reassigned.
+- Prefer `public readonly` for stable public composition fields.
+- Do not use `protected readonly` or `private readonly` unless immutability at
+  that boundary solves a real special-case need.
 - Prefer getters to expose internal state instead of public mutable fields.
 - For public overloads, declare overload signatures first and follow them with
   one implementation.
@@ -282,6 +300,12 @@ Before finishing a TypeScript change, verify:
 - import lines are split to preserve the required type and runtime ordering
 - local imports use `.js`
 - export sections are ordered correctly when multiple categories are present
+- exports are alphabetized within their category
+- public members and the constructor spell out `public`
+- class members follow the required member-type, access-level, and
+  alphabetized order
+- `protected readonly` and `private readonly` only appear for justified
+  special cases
 - exported items end with semicolons
 - object types use commas and interfaces are reserved for class contracts
 - any remaining `any` usage has a preceding justification comment

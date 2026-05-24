@@ -62,6 +62,10 @@ export default class PostIndexController {
   //The current selected tag is updated by filter handlers and reused by the
   // render flow so the page knows which posts should remain visible.
   public selectedTag = '';
+
+  public constructor(selectedTag = '') {
+    this.selectedTag = selectedTag;
+  }
 }
 
 //The public card contract shared by the page and the summary component so

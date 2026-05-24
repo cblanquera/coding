@@ -205,6 +205,8 @@ Rules:
 
 - End export statements with semicolons, including exported functions and
   classes.
+- Keep the category order above, then alphabetize exports within each category
+  by exported name.
 - Use section dividers only for blocks that actually exist.
 - Skip empty sections.
 - If there are only one or two exports in a category and no grouping benefit,
@@ -236,8 +238,18 @@ For CommonJS modules:
 
 - Prefer functions and plain objects unless a class is already the local
   pattern or the lifecycle clearly benefits from a class boundary.
-- Keep class fields and methods organized so a reader can understand the public
-  surface before the helpers.
+- Order class members like this:
+  1. static properties
+  2. static methods
+  3. properties
+  4. getters
+  5. setters
+  6. constructor
+  7. methods
+- Within each member group, keep public-facing members before private helpers
+  when the syntax or local pattern exposes that distinction.
+- Within each same-kind member group, alphabetize by the declared property or
+  method name.
 - Prefix internal helper methods with `_` when that is the local pattern or
   when the file has no stronger class convention.
 - Prefer getters to expose internal state instead of public mutable fields when
@@ -290,5 +302,8 @@ Before finishing a JavaScript change, verify:
 - local ESM imports keep required file extensions when the package expects them
 - export sections are ordered correctly when multiple ESM categories are
   present
+- exports are alphabetized within their category
+- class members follow the required static, property, accessor, constructor,
+  and method order
 - exported items end with semicolons
 - debug logging and commented-out code are not left behind
