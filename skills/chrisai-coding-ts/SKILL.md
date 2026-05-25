@@ -1,6 +1,6 @@
 ---
 name: chrisai-coding-ts
-description: Use this skill when writing or reviewing TypeScript in the cblanquera coding repos. It consolidates the repo's TypeScript and coding standards into one Codex-oriented workflow, including story-like block comments, strict import grouping with `//node`, `//modules`, and `//client`, ordered export sections, ESM-safe local imports, and the project's typing and class conventions.
+description: Use this skill  when the task involves writing or reviewing TypeScript. It consolidates TypeScript coding standards into one oriented workflow, including story-like block comments, strict import grouping with `//node`, `//modules`, and `//client`, ordered export sections, ESM-safe local imports, and the project's typing and class conventions.
 ---
 
 # ChrisAI Coding TS
@@ -13,19 +13,19 @@ This skill may guide implementation directly, but it is especially recommended
 as the final pass after the code already works.
 
 Use the last pass to normalize comment density, JSDoc coverage, declaration
-comments, imports, exports, and repo-style formatting without changing working
+comments, imports, exports, and formatting without changing working
 behavior unnecessarily.
 
 ## Repo Discovery Workflow
 
-Before applying repo standards, inspect the local codebase in this order:
+Before applying standards, inspect the local codebase in this order:
 
 1. the touched file and nearby sibling files
 2. project lint, formatter, and TypeScript config
 3. existing import and export patterns in the same package
 4. package runtime constraints such as ESM, Node version, and build output
 
-If the repo already has a stronger local convention, preserve it. Use this
+If the local codebase already has a stronger local convention, preserve it. Use this
 skill to fill gaps and make decisions when the local pattern is unclear.
 
 ## Task Intake
@@ -273,7 +273,7 @@ Load additional reference material only when the task needs it:
 - `references/jsdoc-and-declaration-comments.md` for JSDoc coverage and
   declaration comment expectations
 - `references/formatting-basics.md` for shared char-length, spacing, and
-  semicolon rules pulled from the repo style guides
+  semicolon rules following recommended style guides
 - `references/typescript-style-details.md` for TypeScript-specific export,
   typing, import, export, and declaration examples
 - `references/module-design.md` for file splitting, helper extraction, and

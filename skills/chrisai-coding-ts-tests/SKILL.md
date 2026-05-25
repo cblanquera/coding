@@ -1,12 +1,12 @@
 ---
 name: chrisai-coding-ts-tests
-description: Use this skill when writing, expanding, or reviewing tests in the cblanquera coding repos. It consolidates the repo's Jest, Mocha, Chai, and coding standards into one Codex-oriented workflow, including framework selection, coverage targets, deterministic test design, strict TypeScript rules, boundary-only mocking, and comment-heavy test structure.
+description: Use this skill when the task involves writing, expanding, or reviewing tests. It consolidates the Jest, Mocha, Chai, and coding standards into one oriented workflow, including framework selection, coverage targets, deterministic test design, strict TypeScript rules, boundary-only mocking, and comment-heavy test structure.
 ---
 
 # ChrisAI Coding TS Tests
 
 Use this skill for test implementation, test refactors, test reviews, and
-coverage work in the `cblanquera` coding repositories.
+coverage work in any local codebase.
 
 ## Second Pass Use
 
@@ -14,19 +14,19 @@ This skill may guide test implementation directly, but it is especially
 recommended as the final pass after the tests already work.
 
 Use the last pass to normalize scenario comments, JSDoc coverage, declaration
-comments, and repo-style readability without changing already-correct test
+comments, and readability without changing already-correct test
 behavior.
 
 ## Repo Discovery Workflow
 
-Before enforcing test conventions, inspect the repo in this order:
+Before enforcing test conventions, inspect the local codebase in this order:
 
 1. the touched test file and nearby suites
 2. test runner, assertion, and mocking libraries in config and dependencies
 3. helper builders, fixtures, and shared setup already used nearby
 4. whether the package expects unit, integration, DOM, or mixed testing
 
-If the repo already has a stronger local pattern, preserve it. Use this skill
+If the codebase already has a stronger local pattern, preserve it. Use this skill
 to resolve ambiguity and keep new tests aligned with the existing stack.
 
 ## Task Intake
@@ -45,20 +45,20 @@ before writing assertions.
 
 Apply rules in this order:
 
-1. Match the existing test framework and style in the touched repo or file.
+1. Match the existing test framework and style in the touched codebase or file.
 2. Apply the standards in this skill.
 3. If a local pattern conflicts with this skill, preserve the local pattern
    unless the user asks to normalize or migrate it.
 
-Do not switch a repo from Jest to Mocha/Chai, or the reverse, unless the user
+Do not switch a codebase from Jest to Mocha/Chai, or the reverse, unless the user
 explicitly asks for a migration.
 
 ## Framework Selection
 
-- Use Jest rules when the repo or touched tests already use Jest.
-- Use Mocha + Chai rules when the repo or touched tests already use them.
-- For React component tests, prefer the repo's existing React testing stack.
-- When no framework is obvious, inspect the repo before writing tests and pick
+- Use Jest rules when the codebase or touched tests already use Jest.
+- Use Mocha + Chai rules when the codebase or touched tests already use them.
+- For React component tests, prefer the codebase's existing React testing stack.
+- When no framework is obvious, inspect the codebase before writing tests and pick
   the framework already present in configuration, dependencies, or nearby test
   files.
 
@@ -177,7 +177,7 @@ expect(result.ok).to.equal(false);
 
 ## Jest Rules
 
-- Mirror the repo's existing Jest file placement. If there is no clear local
+- Mirror the local codebase's existing Jest file placement. If there is no clear local
   pattern, prefer mirrored test paths.
 - Always await async work.
 - Prefer explicit assertions over large snapshots.
@@ -200,9 +200,9 @@ Jest-specific pitfalls:
 
 ## Mocha + Chai Rules
 
-- Standardize on `expect` assertions when the repo uses Chai.
+- Standardize on `expect` assertions when the codebase uses Chai.
 - Use `async/await` and promise-based assertions. Do not use `done` callbacks.
-- Use `chai-as-promised` and `sinon-chai` when the repo already depends on
+- Use `chai-as-promised` and `sinon-chai` when the codebase already depends on
   them.
 - Create a Sinon sandbox for suites or tests that stub behavior, and restore it
   in `afterEach`.
@@ -233,7 +233,7 @@ Load additional reference material only when the task needs it:
 
 ## Coding Standards Inside Tests
 
-- Match the style of the surrounding repo first.
+- Match the style of the surrounding local codebase first.
 - Use 2 spaces for indentation. Never use tabs.
 - Prefer single quotes for strings.
 - Use template literals for interpolation or multiline text.
@@ -257,7 +257,7 @@ Load additional reference material only when the task needs it:
 Before finishing test work, verify that:
 
 - the file received a final style pass after the tests were already working
-- the chosen framework matches the repo
+- the chosen framework matches the local codebase
 - the tests assert public behavior
 - mocks and stubs stop at real boundaries
 - async tests await all meaningful work

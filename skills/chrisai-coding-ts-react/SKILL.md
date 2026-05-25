@@ -1,15 +1,15 @@
 ---
 name: chrisai-coding-ts-react
-description: Use this skill when writing or reviewing TypeScript ReactJS or TSX components in the cblanquera coding repos. It consolidates the repo's typed React frontend standards into one Codex workflow, including story-like code comments, JSX wrapping, typed props and events, component and hook ordering, aggregate hook patterns, controlled and uncontrolled inputs, import grouping, and file organization for reusable versus local React code.
+description: Use this skill when the task involves writing or reviewing TypeScript ReactJS or TSX components. It consolidates typed React frontend standards into one workflow, including story-like code comments, JSX wrapping, typed props and events, component and hook ordering, aggregate hook patterns, controlled and uncontrolled inputs, import grouping, and file organization for reusable versus local React code.
 ---
 
 # ChrisAI Coding TS React
 
 Use this skill for TypeScript ReactJS implementation, refactors, and reviews
-in the `cblanquera` coding repositories.
+in any local codebase.
 
 This skill is intentionally self-contained. It consolidates the relevant
-ReactJS guidance and the repo's TypeScript-oriented coding style so Codex does
+ReactJS guidance and the local TypeScript-oriented coding style so Codex does
 not need to bounce between multiple documents during implementation.
 
 ## Second Pass Use
@@ -18,12 +18,12 @@ This skill may guide implementation directly, but it is especially recommended
 as the final pass after the component logic already works.
 
 Use the last pass to normalize inline comments, JSDoc coverage, section
-comments, file organization, and repo-style readability without destabilizing
+comments, file organization, and readability without destabilizing
 working behavior.
 
 ## Repo Discovery Workflow
 
-Before applying React-specific preferences, inspect the repo in this order:
+Before applying React-specific preferences, inspect the local codebase in this order:
 
 1. the touched component and nearby sibling components
 2. the local React stack, router, and rendering model
@@ -329,7 +329,7 @@ When a module has multiple exports, emit them in this order:
 ## Classes
 
 When TSX files include classes, follow the same TypeScript class rules used in
-the repo:
+the local codebase:
 
 - Use explicit access modifiers like `public`, `protected`, and `private`.
 - Always write `public` on public properties, getters, setters, methods, and
@@ -396,7 +396,7 @@ When writing or reviewing React code, check for these issues:
 - Complex hook logic is aggregated when that improves readability.
 - Controlled and uncontrolled field behavior is implemented correctly.
 - Reusable pieces are separated from local-only pieces appropriately.
-- Imports and exports follow repo conventions.
+- Imports and exports follow this skill's conventions.
 - export groups stay in the required category order and are alphabetized within
   each category
 - TSX classes, when present, use explicit `public` members and follow the

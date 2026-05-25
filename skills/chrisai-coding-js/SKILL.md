@@ -1,6 +1,6 @@
 ---
 name: chrisai-coding-js
-description: Use this skill when writing or reviewing JavaScript in the cblanquera coding repos. It consolidates the repo's JavaScript and coding standards into one Codex-oriented workflow, including story-like block comments, `docs/coding/Coding-Standards.md` formatting rules, module-mode discovery for `.js`, `.mjs`, and `.cjs`, ordered export sections, and file-boundary guidance for repo-aligned JavaScript modules.
+description: Use this skill when the task involves writing or reviewing JavaScript. It consolidates JavaScript coding standards into one oriented workflow, including story-like block comments, formatting rules, module-mode discovery for `.js`, `.mjs`, and `.cjs`, ordered export sections, and file-boundary guidance for JavaScript modules.
 ---
 
 # ChrisAI Coding JS
@@ -22,12 +22,12 @@ This skill may guide implementation directly, but it is especially recommended
 as the final pass after the code already works.
 
 Use the last pass to normalize comment density, JSDoc coverage, declaration
-comments, imports or requires, exports, and repo-style formatting without
+comments, imports or requires, exports, and formatting without
 changing working behavior unnecessarily.
 
 ## Repo Discovery Workflow
 
-Before applying repo standards, inspect the local codebase in this order:
+Before applying standards, inspect the local codebase in this order:
 
 1. the touched file and nearby sibling files
 2. package metadata such as `package.json`
@@ -35,7 +35,7 @@ Before applying repo standards, inspect the local codebase in this order:
 4. the runtime and module system already used by the package or folder
 5. existing import, require, and export patterns in the same package
 
-If the repo already has a stronger local convention, preserve it. Use this
+If the local codebase already has a stronger local convention, preserve it. Use this
 skill to fill gaps and make decisions when the local pattern is unclear.
 
 ## Task Intake
