@@ -1,11 +1,11 @@
 ---
-name: chrisai-usage
+name: chrisai-router
 description: Use when a task should be handled with the ChrisAI skill family and Codex needs to choose the narrowest documentation, coding, or browser-QA specialist without relying on legacy routers.
 ---
 
-# ChrisAI Usage
+# ChrisAI Router
 
-This skill is the only ChrisAI router.
+This skill is the canonical ChrisAI router.
 
 Use it to decide whether a task belongs to the ChrisAI documentation, coding,
 or QA skill family, then hand the work to the narrowest matching specialist
@@ -17,14 +17,14 @@ Do not duplicate specialist instructions here. Route, then defer.
 
 ## Routing Model
 
-- `chrisai-usage` may auto-route to ChrisAI specialist skills.
+- `chrisai-router` may auto-route to ChrisAI specialist skills.
 - Specialist skills may be invoked directly by a human user.
 - Specialist skills must not auto-route to sibling skills.
 - Separate non-router categories may exist outside the ChrisAI docs, coding,
   and QA family.
 - Do not reference or rely on deprecated intermediate routers.
-- `chrisai-usage` is the only shared ChrisAI skill that may actively consult a
-  machine-local `local-environment` overlay.
+- `chrisai-router` is the only shared ChrisAI skill that may actively consult
+  a machine-local `local-environment` overlay.
 
 ## Local Environment Overlay
 
@@ -73,6 +73,11 @@ Do not default to multi-skill documentation sequences.
 
 Choose exactly one coding specialist unless the task crosses a real boundary.
 
+- Use `chrisai-coding-engineering` when the task is mainly about
+  architecture, abstractions, runtime boundaries, framework or library design,
+  plugin or adapter structure, API ergonomics, or deciding whether to
+  simplify, refactor, or replace an existing design before language-specific
+  code-shape details matter.
 - Use `chrisai-coding-js` for JavaScript implementation or refactors outside
   React and outside test-specific work, including `.js`, `.mjs`, and `.cjs`.
 - Use `chrisai-coding-ts` for TypeScript implementation or refactors outside
@@ -87,15 +92,21 @@ Choose exactly one coding specialist unless the task crosses a real boundary.
 ## Coding Pass Sequencing
 
 When the task is code creation or substantive code edits, route coding work in
-two passes:
+two or three passes:
 
-1. use the narrowest coding specialist to get the behavior working
-2. run the same specialist again as a final style pass before considering the
+1. if the task is primarily architectural, use `chrisai-coding-engineering`
+   first to frame the structure and tradeoffs
+2. use the narrowest implementation specialist to get the behavior working
+3. run that same implementation specialist again as a final style pass before
    work complete
 
-The second pass should normalize comments, JSDoc coverage, section comments,
-formatting, and repo-style structure without derailing already-correct logic.
-Do not skip the final pass just because the code already works.
+The engineering pass should shape the design, not duplicate syntax or
+formatting rules from the implementation specialist.
+
+The final implementation-style pass should normalize comments, JSDoc coverage,
+section comments, formatting, and repo-style structure without derailing
+already-correct logic. Do not skip the final pass just because the code
+already works.
 
 ## QA Routes
 
@@ -116,7 +127,7 @@ category rather than the ChrisAI docs, coding, or QA family.
 - Use `chrisai-design-creative` directly for creative direction, visual-system
   definition, homepage composition, brand adaptation, or future wireframing
   work.
-- Do not force design-direction work through `chrisai-usage`.
+- Do not force design-direction work through `chrisai-router`.
 
 ## Decision Rules
 
@@ -126,17 +137,20 @@ category rather than the ChrisAI docs, coding, or QA family.
   first; only add formatting later if needed.
 - If the request is mainly about proofreading, clarity, transitions, or tone
   rather than document ownership, prefer `chrisai-docs-copy-editing`.
+- If the request is mainly about core design, abstraction boundaries, runtime
+  fit, framework or library shape, plugin or adapter structure, or refactor
+  versus rewrite judgment, prefer `chrisai-coding-engineering` first.
 - If the request is non-React JavaScript, prefer `chrisai-coding-js` and let
   that skill decide the right `.js`, `.mjs`, or `.cjs` handling after local
   runtime discovery.
 - If the request mixes React code and tests, pick the side that owns the asked
   deliverable. A new test suite belongs to `chrisai-coding-ts-tests`.
 - If the request is code creation or a substantial code edit, apply the chosen
-  coding specialist again at the end as a style pass.
+  implementation specialist again at the end as a style pass.
 - If the request is about rendered browser behavior, screenshots, or recorded
   flows, prefer `chrisai-qa-playwright` over coding specialists.
 - If the request is mainly about creative direction or visual-system work,
-  treat it as outside the `chrisai-usage` router and prefer
+  treat it as outside the `chrisai-router` router and prefer
   `chrisai-design-creative` directly.
 - If the request needs concrete local runtime or executable paths, consult
   `local-environment` first when it exists.

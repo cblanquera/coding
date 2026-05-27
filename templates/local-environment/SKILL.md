@@ -48,8 +48,8 @@ You may use sections like these if they help, but they are examples only:
 
 ## Usage Notes
 
-- `chrisai-usage` may consult `local-environment` when a task likely depends on
-  host-specific runtime or executable resolution.
+- `chrisai-router` may consult `local-environment` when a task likely depends
+  on host-specific runtime or executable resolution.
 - If `local-environment` does not exist, shared ChrisAI skills should continue
   normally without mentioning it.
 - Keep real machine-specific paths in your local copy only, not in this
