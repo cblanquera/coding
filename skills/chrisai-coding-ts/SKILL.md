@@ -1,11 +1,19 @@
 ---
 name: chrisai-coding-ts
-description: Use this skill  when the task involves writing or reviewing TypeScript. It consolidates TypeScript coding standards into one oriented workflow, including story-like block comments, strict import grouping with `//node`, `//modules`, and `//client`, ordered export sections, ESM-safe local imports, and the project's typing and class conventions.
+description: Use this skill when the task involves writing or reviewing TypeScript implementation details. It consolidates TypeScript coding standards into one oriented workflow, including story-like block comments, strict import grouping with `//node`, `//modules`, and `//client`, ordered export sections, ESM-safe local imports, and the project's typing and class conventions. It is not the skill for framework, architecture, or runtime-boundary decisions.
 ---
 
 # ChrisAI Coding TS
 
 Use this skill for TypeScript implementation, refactors, and reviews.
+
+This is a code-shape and implementation-style skill, not a framework-boundary
+skill.
+
+If the main question is about architecture, framework fit, runtime boundaries,
+adapter shape, public API design, or whether a module boundary should exist at
+all, use `chrisai-coding-engineering` first and only return here once the
+structure is decided.
 
 ## Second Pass Use
 
@@ -36,6 +44,14 @@ Decide early whether the work is mainly:
 - refactor for clarity or typing
 - module extraction or file split
 - review of an existing TypeScript change
+
+Do not use this skill as the primary decision-maker when the task is mainly
+about:
+
+- framework choice or framework integration boundaries
+- runtime, adapter, loader, or plugin boundaries
+- architecture or abstraction design
+- public API or cross-package boundary design
 
 For module-boundary decisions and file-splitting guidance, read
 `references/module-design.md` in this skill when needed.

@@ -92,6 +92,21 @@ averaging multiple styles together.
 Use [site-direction-playbooks](references/site-direction-playbooks.md) when the
 direction is still open or needs clearer naming.
 
+Treat named directions as working design archetypes, not fixed industry
+taxonomy. Labels such as `Editorial`, `Product-Doc Hybrid`, or future app-heavy
+handles like `Knowledge Console` are shorthand for a coherent mix of tone,
+layout behavior, hierarchy, and surface treatment.
+
+The names themselves are not the deliverable. They are internal handles that
+help the agent and user discuss a concrete direction without falling back to
+vague prompts like "make it modern."
+
+If the task benefits from app- or interface-oriented framing, it is valid to
+name a custom direction archetype for the conversation as long as you explain
+what that archetype means in behavioral terms. Do not present such labels as
+canonical design categories unless they are already established in the local
+team or source material.
+
 Prefer a direction that:
 
 - matches the local brand signals
