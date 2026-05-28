@@ -28,6 +28,7 @@ This skill does not own:
 - implementation of HTML, CSS, or JavaScript
 - browser QA or screenshot capture
 - generic product UX strategy or application flow design
+- SVG, PNG, or ICO asset conversion and favicon packaging
 
 Use [`github-pages-vanilla`](../github-pages-vanilla/SKILL.md) when the task
 also needs site architecture, publishing layout, migration policy, or build
@@ -35,6 +36,14 @@ decisions.
 
 Use [`chrisai-coding-html-css`](../chrisai-coding-html-css/SKILL.md) when the
 work moves from creative direction into HTML and CSS implementation.
+
+Use [`chrisai-design-logo-generator`](../chrisai-design-logo-generator/SKILL.md)
+when the work moves from creative direction into logo concept generation or
+logo mark refinement.
+
+Use [`chrisai-design-asset-formats`](../chrisai-design-asset-formats/SKILL.md)
+when the work moves from creative direction into SVG, PNG, or ICO asset
+creation, conversion, transparency validation, or favicon packaging.
 
 Use [`chrisai-qa-playwright`](../chrisai-qa-playwright/SKILL.md) when the task
 is mainly about rendered QA, screenshots, or responsive browser checks.

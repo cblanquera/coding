@@ -1,6 +1,6 @@
 ---
 name: chrisai-router
-description: Use when a task should be handled with the ChrisAI skill family and Codex needs to choose the narrowest documentation, coding, or browser-QA specialist without relying on legacy routers.
+description: Use when a task should be handled with the ChrisAI skill family and Codex needs to choose the narrowest documentation, coding, browser-QA, or design specialist without relying on legacy routers.
 ---
 
 # ChrisAI Router
@@ -8,10 +8,8 @@ description: Use when a task should be handled with the ChrisAI skill family and
 This skill is the canonical ChrisAI router.
 
 Use it to decide whether a task belongs to the ChrisAI documentation, coding,
-or QA skill family, then hand the work to the narrowest matching specialist
-skill.
-
-Do not use this skill to route separate design-category work.
+QA, or design skill family, then hand the work to the narrowest matching
+specialist skill.
 
 Do not duplicate specialist instructions here. Route, then defer.
 
@@ -21,7 +19,7 @@ Do not duplicate specialist instructions here. Route, then defer.
 - Specialist skills may be invoked directly by a human user.
 - Specialist skills must not auto-route to sibling skills.
 - Separate non-router categories may exist outside the ChrisAI docs, coding,
-  and QA family.
+  QA, and design family.
 - Do not reference or rely on deprecated intermediate routers.
 - `chrisai-router` is the only shared ChrisAI skill that may actively consult
   a machine-local `local-environment` overlay.
@@ -119,15 +117,35 @@ feature implementation.
 - Do not route explicit manual `@browser` inspection there unless the request
   is clearly about QA or capture through the ChrisAI flow.
 
+## Design Routes
+
+Choose exactly one design specialist unless the task clearly needs a deliberate
+sequence.
+
+- Use `chrisai-design-creative` for creative direction, visual-system
+  definition, homepage composition, brand adaptation, and future wireframing
+  work.
+- Use `chrisai-design-logo-generator` for logo ideation, SVG-first logo marks,
+  concept variation, and favicon-safe logo refinement.
+- Use `chrisai-design-asset-formats` for SVG, PNG, and ICO asset creation,
+  conversion, transparency validation, temporary SVG prompt artifacts, and
+  favicon packaging.
+
+Only chain design specialists when there is a clear owner plus a clear
+follow-up:
+
+1. use `chrisai-design-creative` first when the visual direction is still open
+2. use `chrisai-design-logo-generator` when the task is specifically about logo
+   concepts or logo mark refinement
+3. use `chrisai-design-asset-formats` when the work moves into concrete asset
+   production or conversion
+
+Do not default to multi-skill design sequences.
+
 ## Out Of Scope
 
 Do not route work here when the main deliverable belongs to a separate skill
-category rather than the ChrisAI docs, coding, or QA family.
-
-- Use `chrisai-design-creative` directly for creative direction, visual-system
-  definition, homepage composition, brand adaptation, or future wireframing
-  work.
-- Do not force design-direction work through `chrisai-router`.
+category rather than the ChrisAI docs, coding, QA, or design family.
 
 ## Decision Rules
 
@@ -149,9 +167,12 @@ category rather than the ChrisAI docs, coding, or QA family.
   implementation specialist again at the end as a style pass.
 - If the request is about rendered browser behavior, screenshots, or recorded
   flows, prefer `chrisai-qa-playwright` over coding specialists.
-- If the request is mainly about creative direction or visual-system work,
-  treat it as outside the `chrisai-router` router and prefer
-  `chrisai-design-creative` directly.
+- If the request is mainly about creative direction, visual-system work, or
+  homepage composition, prefer `chrisai-design-creative`.
+- If the request is mainly about logo creation, logo mark iteration, or
+  favicon-safe logo simplification, prefer `chrisai-design-logo-generator`.
+- If the request is mainly about creating, converting, validating, or packaging
+  SVG, PNG, or ICO assets, prefer `chrisai-design-asset-formats`.
 - If the request needs concrete local runtime or executable paths, consult
   `local-environment` first when it exists.
 - If the request is outside the ChrisAI scope, do not force ChrisAI routing.
