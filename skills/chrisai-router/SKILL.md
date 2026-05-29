@@ -80,6 +80,10 @@ Choose exactly one coding specialist unless the task crosses a real boundary.
   React and outside test-specific work, including `.js`, `.mjs`, and `.cjs`.
 - Use `chrisai-coding-ts` for TypeScript implementation or refactors outside
   React and outside test-specific work.
+- Use `chrisai-coding-ts-logic-review` for review-first TypeScript work where
+  the task is mainly about complex branching, decision logic, branch coverage
+  gaps, duplicated rules, mutation risk, or refactor opportunities before
+  applying changes.
 - Use `chrisai-coding-ts-react` for TSX components, React hooks, and React UI
   code.
 - Use `chrisai-coding-ts-tests` for Jest, Mocha, Chai, or test-coverage work
@@ -161,6 +165,9 @@ category rather than the ChrisAI docs, coding, QA, or design family.
 - If the request is non-React JavaScript, prefer `chrisai-coding-js` and let
   that skill decide the right `.js`, `.mjs`, or `.cjs` handling after local
   runtime discovery.
+- If the request is a TypeScript logic review before code changes, prefer
+  `chrisai-coding-ts-logic-review` over implementation or test-writing
+  specialists.
 - If the request mixes React code and tests, pick the side that owns the asked
   deliverable. A new test suite belongs to `chrisai-coding-ts-tests`.
 - If the request is code creation or a substantial code edit, apply the chosen

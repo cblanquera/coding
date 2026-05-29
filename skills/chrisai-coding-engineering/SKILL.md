@@ -203,6 +203,9 @@ Flag these issues early:
 After using this skill:
 
 - use `chrisai-coding-js` for JavaScript implementation details
+- use `chrisai-coding-ts-logic-review` for review-first TypeScript branching,
+  decision logic, branch coverage, duplicated rule, or mutation-risk findings
+  before applying changes
 - use `chrisai-coding-ts` for TypeScript implementation details
 - use `chrisai-coding-ts-react` for TSX and React implementation details
 - use `chrisai-coding-ts-tests` for test implementation details

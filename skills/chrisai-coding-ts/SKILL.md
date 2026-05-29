@@ -15,6 +15,11 @@ adapter shape, public API design, or whether a module boundary should exist at
 all, use `chrisai-coding-engineering` first and only return here once the
 structure is decided.
 
+If the main question is a review-first pass over complex branching, decision
+logic, branch coverage gaps, duplicated rules, or mutation risk, use
+`chrisai-coding-ts-logic-review` first and only return here after the user
+approves code edits.
+
 ## Second Pass Use
 
 This skill may guide implementation directly, but it is especially recommended
@@ -52,6 +57,8 @@ about:
 - runtime, adapter, loader, or plugin boundaries
 - architecture or abstraction design
 - public API or cross-package boundary design
+- review-first branching, decision-logic, branch coverage, duplicated rule, or
+  mutation-risk findings before code edits are approved
 
 For module-boundary decisions and file-splitting guidance, read
 `references/module-design.md` in this skill when needed.
